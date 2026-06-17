@@ -172,9 +172,110 @@
       50%       { transform: translateY(5px); }
     }
 
-    /* Placeholder for upcoming sections */
+    /* ── SECTION 2 · SERVICES ── */
     #services {
       background: var(--blue-pale);
+      padding: 5rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-eyebrow {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Chillax', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      border: 1px solid rgba(0, 115, 229, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 115, 229, 0.1);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-title {
+      font-family: 'Chillax', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .service-desc {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      #services {
+        padding: 4rem 1.25rem;
+      }
     }
 
     /* ── RESPONSIVE ── */
@@ -220,8 +321,81 @@
     </a>
   </section>
 
-  <!-- SECTION 2 · placeholder -->
+  <!-- SECTION 2 · SERVICES -->
   <section id="services">
+    <div class="section-header">
+      <p class="section-eyebrow">What I can help you with</p>
+      <h2 class="section-title">Services</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- 1 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="service-title">End-to-End AI Projects</p>
+        <p class="service-desc">From scoping to deployment: RAG pipelines, NLP systems, and medical imaging models built for real clinical environments.</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <p class="service-title">AI Strategy & Consulting</p>
+        <p class="service-desc">Helping healthcare organizations identify where AI creates value and how to implement it responsibly.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h.01M10 8h4M6 12h12"/></svg>
+        </div>
+        <p class="service-title">Clinical Automations</p>
+        <p class="service-desc">Streamlining repetitive clinical and administrative workflows using AI agents and automation tools.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <p class="service-title">Medical Database Design & Interoperability</p>
+        <p class="service-desc">Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+        </div>
+        <p class="service-title">Research & Development</p>
+        <p class="service-desc">Collaborating on applied research projects at the intersection of medicine, data science, and AI.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <p class="service-title">Clinical Data Analysis & Visualization</p>
+        <p class="service-desc">Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling.</p>
+      </div>
+
+    </div>
+
+    <a class="scroll-cta" href="#about" style="color: var(--muted);">
+      <span class="scroll-cta-text">Why work with me?</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 3 · placeholder -->
+  <section id="about" style="background: var(--white);">
     <!-- coming next -->
   </section>
 
