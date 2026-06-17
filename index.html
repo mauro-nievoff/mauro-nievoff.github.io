@@ -292,6 +292,211 @@
     @media (prefers-reduced-motion: reduce) {
       .scroll-cta-arrow { animation: none; }
     }
+
+    /* ── SECTION 3 · ABOUT ── */
+    #about {
+      background: var(--white);
+      padding: 5rem 2rem 6rem;
+      align-items: center;
+    }
+
+    .about-inner {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 1.25rem 0.75rem;
+      background: var(--blue-pale);
+      border-radius: 14px;
+    }
+
+    .metric-value {
+      font-family: 'Chillax', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .metric-label {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .about-bio-block p {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      color: var(--dark);
+      line-height: 1.75;
+      max-width: 720px;
+      margin-bottom: 0.85rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue-pale);
+      border: 1px solid rgba(0,115,229,0.12);
+      border-radius: 999px;
+      padding: 0.4rem 0.85rem;
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .skill-chip img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    .skill-chip-badge {
+      background: var(--blue);
+      color: var(--white);
+      border-color: transparent;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid rgba(0,115,229,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,115,229,0.1);
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-thumb svg { width: 100%; height: 100%; }
+
+    .project-body {
+      padding: 1.25rem 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .project-title {
+      font-family: 'Chillax', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,115,229,0.25);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+
+    .project-link:hover { border-color: var(--blue); }
+
+    .github-cta { text-align: center; margin-top: 0.5rem; }
+
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-decoration: none;
+      border: 1.5px solid rgba(67,70,86,0.2);
+      border-radius: 999px;
+      padding: 0.6rem 1.25rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .github-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .github-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    @media (max-width: 720px) {
+      .metrics-row { grid-template-columns: repeat(3, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      #about { padding: 4rem 1.25rem 5rem; }
+    }
   </style>
 </head>
 <body>
@@ -394,8 +599,238 @@
     </a>
   </section>
 
-  <!-- SECTION 3 · placeholder -->
-  <section id="about" style="background: var(--white);">
+  <!-- SECTION 3 · ABOUT + PROJECTS -->
+  <section id="about">
+    <div class="about-inner">
+
+      <!-- Section header -->
+      <div class="section-header" style="text-align:left; margin-bottom:0;">
+        <p class="section-eyebrow">Why work with me</p>
+        <h2 class="section-title">Background & Work</h2>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics-row">
+        <div class="metric">
+          <span class="metric-value">7+</span>
+          <span class="metric-label">Years of experience</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">100%</span>
+          <span class="metric-label">Job Success on Upwork</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">$90K+</span>
+          <span class="metric-label">Earned on Upwork</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">4,000+</span>
+          <span class="metric-label">Hours logged</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">4</span>
+          <span class="metric-label">Peer-reviewed publications (1st author)</span>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="about-bio-block">
+        <p>I'm a Medical Doctor and Senior Data Scientist working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production.</p>
+        <p>My background is academic-solid and industry-tested: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant.</p>
+        <p>I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter.</p>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <p class="section-eyebrow" style="margin-bottom:1rem;">Tech stack</p>
+        <div class="skills-grid">
+          <!-- Logo chips -->
+          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">Python</div>
+          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">Google Cloud</div>
+          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">GitHub</div>
+          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">FastAPI</div>
+          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neo4j/neo4j-original.svg" alt="Neo4j">Neo4j</div>
+          <!-- Text badge chips for tools without devicon logos -->
+          <div class="skill-chip skill-chip-badge">LangChain</div>
+          <div class="skill-chip skill-chip-badge">LangGraph</div>
+          <div class="skill-chip skill-chip-badge">N8N</div>
+          <div class="skill-chip skill-chip-badge">Hugging Face</div>
+          <div class="skill-chip skill-chip-badge">BigQuery</div>
+          <div class="skill-chip skill-chip-badge">Vertex AI</div>
+          <div class="skill-chip skill-chip-badge">FHIR</div>
+          <div class="skill-chip skill-chip-badge">HL7</div>
+          <div class="skill-chip skill-chip-badge">SNOMED CT</div>
+          <div class="skill-chip skill-chip-badge">DICOM</div>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div>
+        <p class="section-eyebrow" style="margin-bottom:1rem;">Selected projects</p>
+        <div class="projects-grid">
+
+          <!-- 1: Oncology NLP -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #C5DAFF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="30" width="80" height="22" rx="4" fill="#0073E5" opacity="0.15"/>
+                <rect x="20" y="30" width="80" height="22" rx="4" fill="none" stroke="#0073E5" stroke-width="1"/>
+                <text x="60" y="45" font-size="9" fill="#0073E5" text-anchor="middle" font-family="sans-serif">CANCER_DX</text>
+                <rect x="112" y="30" width="68" height="22" rx="4" fill="#6AA7FF" opacity="0.2"/>
+                <rect x="112" y="30" width="68" height="22" rx="4" fill="none" stroke="#6AA7FF" stroke-width="1"/>
+                <text x="146" y="45" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">STAGING</text>
+                <rect x="192" y="30" width="80" height="22" rx="4" fill="#8CC2FF" opacity="0.2"/>
+                <rect x="192" y="30" width="80" height="22" rx="4" fill="none" stroke="#8CC2FF" stroke-width="1"/>
+                <text x="232" y="45" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">CHEMOTHERAPY</text>
+                <rect x="20" y="65" width="55" height="22" rx="4" fill="#0073E5" opacity="0.12"/>
+                <rect x="20" y="65" width="55" height="22" rx="4" fill="none" stroke="#0073E5" stroke-width="1"/>
+                <text x="47" y="80" font-size="9" fill="#0073E5" text-anchor="middle" font-family="sans-serif">DOSAGE</text>
+                <rect x="87" y="65" width="70" height="22" rx="4" fill="#6AA7FF" opacity="0.15"/>
+                <rect x="87" y="65" width="70" height="22" rx="4" fill="none" stroke="#6AA7FF" stroke-width="1"/>
+                <text x="122" y="80" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">IMAGING_TEST</text>
+                <rect x="169" y="65" width="90" height="22" rx="4" fill="#8CC2FF" opacity="0.15"/>
+                <rect x="169" y="65" width="90" height="22" rx="4" fill="none" stroke="#8CC2FF" stroke-width="1"/>
+                <text x="214" y="80" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">TUMOR_FINDING</text>
+                <text x="160" y="115" font-size="10" fill="#617795" text-anchor="middle" font-family="sans-serif" font-weight="500">Clinical NLP · Named Entity Recognition</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Industry · John Snow Labs</span>
+              <p class="project-title">Oncology NLP Models</p>
+              <p class="project-desc">Built and presented state-of-the-art NLP models for oncology clinical text at the NLP Summit, using Spark NLP for named entity recognition across cancer-related entities.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://www.youtube.com/watch?v=7YYdpBidyDc" target="_blank">▶ NLP Summit Talk</a>
+                <a class="project-link" href="https://github.com/JohnSnowLabs/spark-nlp-workshop/blob/master/healthcare-nlp/21.0.Oncology_Model.ipynb" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2: Multiplex Classification -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #D0E8FF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="110" y="10" width="100" height="28" rx="6" fill="#0073E5"/>
+                <text x="160" y="28" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">Only 2 classes?</text>
+                <line x1="130" y1="38" x2="80" y2="62" stroke="#617795" stroke-width="1.5"/>
+                <line x1="190" y1="38" x2="240" y2="62" stroke="#617795" stroke-width="1.5"/>
+                <text x="100" y="58" font-size="8" fill="#617795" font-family="sans-serif">YES</text>
+                <text x="205" y="58" font-size="8" fill="#617795" font-family="sans-serif">NO</text>
+                <rect x="30" y="62" width="90" height="26" rx="6" fill="#6AA7FF" opacity="0.3"/>
+                <rect x="30" y="62" width="90" height="26" rx="6" fill="none" stroke="#6AA7FF" stroke-width="1.5"/>
+                <text x="75" y="79" font-size="8" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">BINARY</text>
+                <rect x="170" y="62" width="110" height="26" rx="6" fill="#0073E5"/>
+                <text x="225" y="79" font-size="8" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">One outcome/instance?</text>
+                <line x1="185" y1="88" x2="130" y2="108" stroke="#617795" stroke-width="1.5"/>
+                <line x1="265" y1="88" x2="280" y2="108" stroke="#617795" stroke-width="1.5"/>
+                <rect x="75" y="108" width="90" height="22" rx="5" fill="#8CC2FF" opacity="0.3"/>
+                <rect x="75" y="108" width="90" height="22" rx="5" fill="none" stroke="#8CC2FF" stroke-width="1"/>
+                <text x="120" y="122" font-size="8" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">MULTICLASS</text>
+                <rect x="235" y="108" width="70" height="22" rx="5" fill="#0073E5" opacity="0.2"/>
+                <rect x="235" y="108" width="70" height="22" rx="5" fill="none" stroke="#0073E5" stroke-width="1"/>
+                <text x="270" y="122" font-size="8" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">MULTIPLEX</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Research · Applied Ontology</span>
+              <p class="project-title">Multiplex Classification Framework</p>
+              <p class="project-desc">A theoretical framework for complex ML classification supporting any number of classes and logical relations between them, with application to medical image classification.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://doi.org/10.1177/15705838251340362" target="_blank">Read paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3: MultiCaRe -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #C8DFFF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="15" width="130" height="110" rx="8" fill="white" stroke="#0073E5" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="35" y="35" font-size="7.5" fill="#617795" font-family="sans-serif" font-weight="600">Clinical Case</text>
+                <text x="28" y="52" font-size="6.5" fill="#434656" font-family="sans-serif">A 52-year-old male presented</text>
+                <text x="28" y="63" font-size="6.5" fill="#434656" font-family="sans-serif">with dyspnea and bilateral</text>
+                <text x="28" y="74" font-size="6.5" fill="#434656" font-family="sans-serif">leg edema...</text>
+                <rect x="172" y="15" width="130" height="68" rx="8" fill="#1a1a2e" stroke="#6AA7FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="237" y="35" font-size="7.5" fill="#6AA7FF" text-anchor="middle" font-family="sans-serif" font-weight="600">Image</text>
+                <ellipse cx="237" cy="58" rx="28" ry="22" fill="#0073E5" opacity="0.3"/>
+                <ellipse cx="237" cy="58" rx="18" ry="14" fill="#0073E5" opacity="0.4"/>
+                <rect x="172" y="92" width="130" height="33" rx="8" fill="white" stroke="#8CC2FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="237" y="107" font-size="7" fill="#617795" text-anchor="middle" font-family="sans-serif">radiology · ultrasound · echo</text>
+                <text x="160" y="138" font-size="9" fill="#617795" text-anchor="middle" font-family="sans-serif" font-weight="500">100K+ cases · 140K+ images · PubMed Central</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Open Source · Published in Data</span>
+              <p class="project-title">MultiCaRe Dataset</p>
+              <p class="project-desc">An open-source multimodal dataset of 100K+ clinical cases and 140K+ medical images, built from PubMed Central case reports to advance clinical AI research.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://doi.org/10.3390/data10080123" target="_blank">Read paper</a>
+                <a class="project-link" href="https://github.com/mauro-nievoff/MultiCaRe_Dataset" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4: LLM Fine-tuning -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #C5DAFF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="45" width="70" height="28" rx="6" fill="#0073E5" opacity="0.15"/>
+                <rect x="10" y="45" width="70" height="28" rx="6" fill="none" stroke="#0073E5" stroke-width="1.5"/>
+                <text x="45" y="57" font-size="7" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">Patient</text>
+                <text x="45" y="67" font-size="7" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">Information</text>
+                <rect x="10" y="82" width="70" height="28" rx="6" fill="#6AA7FF" opacity="0.15"/>
+                <rect x="10" y="82" width="70" height="28" rx="6" fill="none" stroke="#6AA7FF" stroke-width="1.5"/>
+                <text x="45" y="94" font-size="7" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">Clinical Trial</text>
+                <text x="45" y="104" font-size="7" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">Information</text>
+                <line x1="80" y1="59" x2="110" y2="72" stroke="#617795" stroke-width="1.5" marker-end="url(#arr)"/>
+                <line x1="80" y1="96" x2="110" y2="83" stroke="#617795" stroke-width="1.5"/>
+                <circle cx="130" cy="72" r="18" fill="#0073E5"/>
+                <text x="130" y="69" font-size="7" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="700">GPT</text>
+                <text x="130" y="79" font-size="6" fill="white" text-anchor="middle" font-family="sans-serif">LLM</text>
+                <line x1="148" y1="72" x2="172" y2="72" stroke="#617795" stroke-width="1.5"/>
+                <rect x="172" y="55" width="60" height="34" rx="5" fill="white" stroke="#8CC2FF" stroke-width="1.5"/>
+                <text x="202" y="71" font-size="6.5" fill="#617795" text-anchor="middle" font-family="sans-serif">Output</text>
+                <text x="202" y="81" font-size="6.5" fill="#617795" text-anchor="middle" font-family="sans-serif">JSON</text>
+                <line x1="232" y1="72" x2="252" y2="72" stroke="#617795" stroke-width="1.5"/>
+                <rect x="252" y="55" width="60" height="34" rx="5" fill="#0073E5" opacity="0.15"/>
+                <rect x="252" y="55" width="60" height="34" rx="5" fill="none" stroke="#0073E5" stroke-width="1.5"/>
+                <text x="282" y="71" font-size="6.5" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">Trial</text>
+                <text x="282" y="81" font-size="6.5" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">LLAMA</text>
+                <text x="160" y="120" font-size="9" fill="#617795" text-anchor="middle" font-family="sans-serif" font-weight="500">Performance parity with GPT · Published in JAMIA</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Research · Published in JAMIA</span>
+              <p class="project-title">LLM Fine-tuning for Clinical Trial Matching</p>
+              <p class="project-desc">Fine-tuned open-source LLMs for patient-to-clinical trial matching, achieving performance parity with proprietary models like GPT-4 at a fraction of the cost.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://doi.org/10.1093/jamia/ocae073" target="_blank">Read paper</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GitHub CTA -->
+        <div class="github-cta" style="margin-top:1.5rem;">
+          <a class="github-btn" href="https://github.com/mauro-nievoff" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View all my work on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="scroll-cta" href="#contact" style="color: var(--muted);">
+      <span class="scroll-cta-text">Get in touch with me</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 4 · placeholder -->
+  <section id="contact" style="background: var(--blue-pale);">
     <!-- coming next -->
   </section>
 
