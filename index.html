@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mauro Nievas Offidani · AI & Data Science for Healthcare</title>
+
+  <!-- Fonts from Fontshare -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,500,600,700&f[]=neulis-sans@400,500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #0073E5;
+      --blue-mid:   #6AA7FF;
+      --blue-light: #8CC2FF;
+      --blue-pale:  #E7EFFF;
+      --dark:       #434656;
+      --muted:      #617795;
+      --white:      #FFFFFF;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Neulis Sans', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      height: 100%;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      scroll-snap-align: start;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 3rem 1.5rem;
+    }
+
+    /* ── SECTION 1 · HERO ── */
+    #hero {
+      background: var(--white);
+      text-align: center;
+      gap: 0;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    /* Photo */
+    .avatar-ring {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      padding: 4px;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* Name */
+    .hero-name {
+      font-family: 'Chillax', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.15;
+    }
+
+    /* Credentials */
+    .hero-credentials {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: -0.75rem;
+    }
+
+    /* Tagline */
+    .hero-tagline {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.5;
+    }
+
+    /* Divider */
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--blue-light);
+      border-radius: 2px;
+    }
+
+    /* Scroll CTA */
+    .scroll-cta {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .scroll-cta:hover { color: var(--blue); }
+
+    .scroll-cta-text {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .scroll-cta-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-cta-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
+    /* Placeholder for upcoming sections */
+    #services {
+      background: var(--blue-pale);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .avatar-ring {
+        width: 140px;
+        height: 140px;
+      }
+      .scroll-cta {
+        bottom: 1.75rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-cta-arrow { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 · HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="avatar-ring">
+        <img src="profile_photo.jpg" alt="Mauro Nievas Offidani" />
+      </div>
+
+      <div>
+        <h1 class="hero-name">Mauro Nievas Offidani</h1>
+        <p class="hero-credentials">MD &nbsp;·&nbsp; PhD</p>
+      </div>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-tagline">AI &amp; Data Science for Healthcare</p>
+    </div>
+
+    <a class="scroll-cta" href="#services">
+      <span class="scroll-cta-text">What I can help you with</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 2 · placeholder -->
+  <section id="services">
+    <!-- coming next -->
+  </section>
+
+</body>
+</html>
