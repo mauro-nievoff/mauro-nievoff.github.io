@@ -271,6 +271,8 @@
 
     .whois-bio p:last-child { margin-bottom: 0; }
 
+    .whois-bio-mobile { display: none; }
+
     /* Tech stack icon grid */
     .tech-grid {
       display: grid;
@@ -332,43 +334,52 @@
         height: auto;
       }
       .whois-left {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: flex-start;
+        flex-direction: column;
         border-right: none;
         border-bottom: 1px solid var(--blue-pale);
-        padding: 2rem 1.25rem 1.5rem;
-        justify-content: center;
+        padding: 0 0 1.5rem;
         gap: 1rem;
       }
       .whois-photo {
-        flex: 0 0 50%;
-        max-width: 50%;
-        aspect-ratio: 3 / 4;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
         overflow: hidden;
+        border-radius: 0;
       }
       .whois-photo img {
+        width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 50% top;
+        object-position: 50% 15%;
       }
       .whois-metrics {
-        flex: 0 0 calc(50% - 1rem);
-        max-width: calc(50% - 1rem);
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
+        width: 100%;
+        max-width: 320px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 0 1.25rem;
       }
       .whois-upwork {
-        width: 100%;
         justify-content: center;
         margin-top: 0.25rem;
       }
       .whois-content { padding: 1.5rem 1.5rem 4rem; }
+      .whois-bio-desktop { display: none; }
+      .whois-bio-mobile { display: block; }
     }
 
     @media (max-width: 480px) {
       .tech-grid { grid-template-columns: repeat(4, 1fr); }
-      .tech-card { width: auto; height: auto; aspect-ratio: 1/1; }
+      .tech-card {
+        width: auto;
+        height: auto;
+        aspect-ratio: 1/1;
+        padding: 0.4rem;
+      }
+      .tech-card img { width: 26px; height: 26px; }
+      .tech-card-badge { width: 26px; height: 26px; font-size: 0.45rem; }
+      .tech-card span { font-size: 0.6rem; }
     }
 
     /* ── SECTION 2 · SERVICES ── */
@@ -957,10 +968,13 @@
 
       <!-- Right: bio + tech stack -->
       <div class="whois-content">
-        <div class="whois-bio">
+        <div class="whois-bio whois-bio-desktop">
           <p>Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production.</p>
           <p>My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant.</p>
           <p>I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter. This is <strong>my tech stack</strong>:</p>
+        </div>
+        <div class="whois-bio whois-bio-mobile">
+          <p>Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects. This is <strong>my tech stack</strong>:</p>
         </div>
 
         <div>
