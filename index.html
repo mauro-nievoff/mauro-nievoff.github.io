@@ -338,8 +338,8 @@
         align-items: center;
         border-right: none;
         border-bottom: 1px solid var(--blue-pale);
-        padding: 0 0 1rem;
-        gap: 0.6rem;
+        padding: 0 0 0.6rem;
+        gap: 0.4rem;
       }
       .whois-photo {
         width: 100%;
@@ -356,9 +356,9 @@
       }
       .whois-metrics {
         width: 100%;
-        max-width: 280px;
+        max-width: 240px;
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.4rem;
+        gap: 0.3rem;
         padding: 0 1.25rem;
         justify-items: center;
         margin: 0 auto;
@@ -368,29 +368,30 @@
       }
       .whois-upwork {
         justify-content: center;
-        margin-top: 0.15rem;
+        margin-top: 0.1rem;
       }
-      .whois-content { padding: 1rem 1rem 2.5rem; gap: 0.85rem; }
+      .whois-content { padding: 0.5rem 1rem 1.5rem; gap: 0.5rem; }
       .whois-bio-desktop { display: none; }
       .whois-bio-mobile { display: block; }
     }
 
     @media (max-width: 480px) {
-      .whois-metrics .metric-value { font-size: 1.5rem; }
-      .whois-metrics .metric-label { font-size: 0.7rem; }
-      .whois-bio-mobile p { font-size: 0.85rem; line-height: 1.5; }
-      .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+      .whois-metrics .metric-value { font-size: 1.15rem; }
+      .whois-metrics .metric-label { font-size: 0.6rem; }
+      .whois-bio-mobile p { font-size: 0.72rem; line-height: 1.3; }
+      .whois-bio-mobile p br + br { display: none; }
+      .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
       .tech-card {
         width: auto;
         height: auto;
         aspect-ratio: 1/1;
-        padding: 0.4rem;
-        gap: 0.25rem;
-        border-radius: 10px;
+        padding: 0.25rem;
+        gap: 0.15rem;
+        border-radius: 8px;
       }
-      .tech-card img { width: 28px; height: 28px; }
-      .tech-card-badge { width: 28px; height: 28px; font-size: 0.5rem; border-radius: 6px; }
-      .tech-card span { font-size: 0.62rem; line-height: 1.15; }
+      .tech-card img { width: 20px; height: 20px; }
+      .tech-card-badge { width: 20px; height: 20px; font-size: 0.38rem; border-radius: 5px; }
+      .tech-card span { font-size: 0.48rem; line-height: 1.1; }
     }
 
     /* ── SECTION 2 · SERVICES ── */
