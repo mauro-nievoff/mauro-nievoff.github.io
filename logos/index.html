@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mauro Nievas Offidani · AI & Data Science for Healthcare</title>
+
+  <!-- Fonts from Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400,500,700,800&family=Lato:wght@300,400,700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #0073E5;
+      --blue-mid:   #6AA7FF;
+      --blue-light: #8CC2FF;
+      --blue-pale:  #E7EFFF;
+      --dark:       #434656;
+      --muted:      #617795;
+      --white:      #FFFFFF;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      height: 100%;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      scroll-snap-align: start;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 3rem 1.5rem;
+    }
+
+    /* ── SECTION 1 · HERO ── */
+    #hero {
+      background: linear-gradient(135deg, #C8D9F5 0%, #E7EFFF 55%, #D5E5FF 100%);
+      text-align: center;
+      gap: 0;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.1rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    /* Hero image */
+    .hero-image-wrap {
+      position: relative;
+      width: clamp(260px, 78vw, 860px);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+
+    /* Name */
+    .hero-name {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    /* Credentials inline — same font, same weight */
+    .hero-credentials-inline {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      color: var(--dark);
+      letter-spacing: -0.01em;
+    }
+
+    /* Tagline */
+    .hero-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      font-weight: 400;
+      color: var(--dark);
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
+    /* Divider hidden */
+    .hero-divider { display: none; }
+
+    /* Scroll CTA */
+    .scroll-cta {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .scroll-cta:hover { color: var(--blue); }
+
+    .scroll-cta-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .scroll-cta-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-cta-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
+    /* ── SECTION 2 · WHO AM I ── */
+    #about {
+      background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .whois-inner {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      min-height: 100vh;
+    }
+
+    /* Left column */
+    .whois-left {
+      flex: 0 0 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem 1.5rem 4rem 2rem;
+      border-right: 1px solid var(--blue-pale);
+    }
+
+    .whois-photo {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .whois-photo img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .whois-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      width: 100%;
+    }
+
+    .whois-metrics .metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.45rem 0.75rem;
+      aspect-ratio: unset;
+    }
+
+    .whois-metrics .metric-value {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+    }
+
+    .whois-metrics .metric-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .whois-upwork {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(97,119,149,0.3);
+      padding-bottom: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Right column */
+    .whois-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.5rem 3rem 4rem 3rem;
+      overflow-y: auto;
+    }
+
+    .whois-bio p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      color: var(--dark);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .whois-bio strong {
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .whois-bio p:last-child { margin-bottom: 0; }
+
+    /* Tech stack icon grid */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 105px);
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .tech-card {
+      background: var(--blue-pale);
+      border: 1px solid rgba(0,115,229,0.08);
+      border-radius: 12px;
+      width: 105px;
+      height: 105px;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .tech-card img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .tech-card-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .tech-card span {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 860px) {
+      .whois-inner {
+        flex-direction: column;
+        height: auto;
+      }
+      .whois-left {
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-right: none;
+        border-bottom: 1px solid var(--blue-pale);
+        padding: 2rem 1.5rem 1.5rem;
+        justify-content: center;
+      }
+      .whois-photo { max-width: 140px; }
+      .whois-content { padding: 1.5rem 1.5rem 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .whois-metrics { grid-template-columns: repeat(3, 1fr); }
+      .tech-grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+    }
+
+    /* ── SECTION 2 · SERVICES ── */
+    #services {
+      background: var(--blue-pale);
+      padding: 5rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      border: 1px solid rgba(0, 115, 229, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 115, 229, 0.1);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .service-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      #services {
+        padding: 4rem 1.25rem;
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .hero-image-wrap {
+        width: 92vw;
+      }
+      .scroll-cta {
+        bottom: 8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-cta-arrow { animation: none; }
+    }
+
+    /* ── SECTION 3 · PROJECTS ── */
+    #projects {
+      background: var(--white);
+      padding: 5rem 2rem 6rem;
+      align-items: center;
+    }
+
+    .about-inner {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 1.25rem 0.75rem;
+      background: var(--blue-pale);
+      border-radius: 14px;
+    }
+
+    .metric-value {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .metric-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .about-bio-block p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      color: var(--dark);
+      line-height: 1.75;
+      max-width: 720px;
+      margin-bottom: 0.85rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue-pale);
+      border: 1px solid rgba(0,115,229,0.12);
+      border-radius: 999px;
+      padding: 0.4rem 0.85rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .skill-chip img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    .skill-chip-badge {
+      background: var(--blue);
+      color: var(--white);
+      border-color: transparent;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid rgba(0,115,229,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,115,229,0.1);
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-thumb svg { width: 100%; height: 100%; }
+
+    .project-body {
+      padding: 1.25rem 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .project-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,115,229,0.25);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+
+    .project-link:hover { border-color: var(--blue); }
+
+    .github-cta { text-align: center; margin-top: 0.5rem; }
+
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-decoration: none;
+      border: 1.5px solid rgba(67,70,86,0.2);
+      border-radius: 999px;
+      padding: 0.6rem 1.25rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .github-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .github-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    @media (max-width: 720px) {
+      .metrics-row { grid-template-columns: repeat(3, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      #about { padding: 4rem 1.25rem 5rem; }
+    }
+
+    /* ── SECTION 4 · CONTACT ── */
+    #contact {
+      background: var(--dark);
+      padding: 5rem 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-inner {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .contact-header { text-align: center; }
+
+    .contact-header .section-eyebrow { color: var(--blue-mid); }
+
+    .contact-header .section-title { color: var(--white); }
+
+    .contact-header p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* Action buttons row */
+    .contact-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .contact-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .contact-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .btn-cal {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+    }
+
+    .btn-li {
+      background: #0A66C2;
+      color: var(--white);
+    }
+
+    /* Contact form */
+    .contact-form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--blue-mid); }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-end;
+      transition: opacity 0.2s;
+    }
+
+    .form-submit:hover { opacity: 0.85; }
+
+    /* Share + footer */
+    .contact-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .share-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+
+    .share-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .contact-copy {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .share-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--blue);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 100;
+    }
+
+    .share-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 540px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-actions { flex-direction: column; align-items: stretch; }
+      .contact-btn { justify-content: center; }
+      #contact { padding: 4rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 · HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-image-wrap">
+        <img src="hero_image.png" alt="Mauro Nievas Offidani — AI & Data Science for Healthcare" />
+      </div>
+      <h1 class="hero-name">Mauro Nievas Offidani<span class="hero-credentials-inline">, MD, PhD</span></h1>
+      <p class="hero-tagline">AI &amp; Data Science for Healthcare</p>
+    </div>
+
+    <a class="scroll-cta" href="#about">
+      <span class="scroll-cta-text">Who am I?</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 2 · WHO AM I -->
+  <section id="about">
+    <div class="whois-inner">
+
+      <!-- Left: photo + metrics -->
+      <div class="whois-left">
+        <div class="whois-photo">
+          <img src="profile_photo.jpg" alt="Mauro Nievas Offidani" />
+        </div>
+        <div class="whois-metrics">
+          <div class="metric">
+            <span class="metric-value">7+</span>
+            <span class="metric-label">Years of experience</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">100%</span>
+            <span class="metric-label">Job Success</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">4,000+</span>
+            <span class="metric-label">Hours logged</span>
+          </div>
+        </div>
+        <a class="whois-upwork" href="https://www.upwork.com/freelancers/~015df5a11ddda9bd9c" target="_blank">
+          <img src="logos/upwork.png" alt="Upwork" style="height:14px; opacity:0.75;">Verified on Upwork ↗
+        </a>
+      </div>
+
+      <!-- Right: bio + tech stack -->
+      <div class="whois-content">
+        <div class="whois-bio">
+          <p>Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production.</p>
+          <p>My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant.</p>
+          <p>I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter. This is <strong>my tech stack</strong>:</p>
+        </div>
+
+        <div>
+          <div class="tech-grid">
+            <div class="tech-card"><img src="logos/python.png" alt="Python"><span>Python</span></div>
+            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud"><span>Google Cloud</span></div>
+            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub"><span>GitHub</span></div>
+            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></div>
+            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/neo4j/neo4j-original.svg" alt="Neo4j"><span>Neo4j</span></div>
+            <div class="tech-card"><img src="logos/langchain.webp" alt="LangChain"><span>LangChain</span></div>
+            <div class="tech-card"><img src="logos/langgraph.png" alt="LangGraph"><span>LangGraph</span></div>
+            <div class="tech-card"><img src="logos/n8n.webp" alt="N8N"><span>N8N</span></div>
+            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI"><span>Power BI</span></div>
+            <div class="tech-card"><img src="logos/huggingface.svg" alt="Hugging Face"><span>HuggingFace</span></div>
+            <div class="tech-card"><img src="logos/bigquery.webp" alt="BigQuery"><span>BigQuery</span></div>
+            <div class="tech-card"><img src="logos/vertexai.png" alt="Vertex AI"><span>Vertex AI</span></div>
+            <div class="tech-card"><img src="logos/fhir.png" alt="FHIR"><span>FHIR</span></div>
+            <div class="tech-card"><img src="logos/hl7.png" alt="HL7"><span>HL7</span></div>
+            <div class="tech-card"><img src="logos/snomedct.jpg" alt="SNOMED CT" style="border-radius:6px;"><span>SNOMED CT</span></div>
+            <div class="tech-card"><img src="logos/dicom.png" alt="DICOM"><span>DICOM</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="scroll-cta" href="#services" style="color: var(--muted);">
+      <span class="scroll-cta-text">How can I help you?</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 2 · SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <p class="section-eyebrow">How can I help you?</p>
+      <h2 class="section-title">Services</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- 1 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="service-title">End-to-End AI Projects</p>
+        <p class="service-desc">From scoping to deployment: RAG pipelines, NLP systems, and medical imaging models built for real clinical environments.</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <p class="service-title">AI Strategy & Consulting</p>
+        <p class="service-desc">Helping healthcare organizations identify where AI creates value and how to implement it responsibly.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h.01M10 8h4M6 12h12"/></svg>
+        </div>
+        <p class="service-title">Clinical Automations</p>
+        <p class="service-desc">Streamlining repetitive clinical and administrative workflows using AI agents and automation tools.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <p class="service-title">Medical Database Design & Interoperability</p>
+        <p class="service-desc">Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+        </div>
+        <p class="service-title">Research & Development</p>
+        <p class="service-desc">Collaborating on applied research projects at the intersection of medicine, data science, and AI.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <p class="service-title">Clinical Data Analysis & Visualization</p>
+        <p class="service-desc">Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling.</p>
+      </div>
+
+    </div>
+
+    <a class="scroll-cta" href="#projects" style="color: var(--muted);">
+      <span class="scroll-cta-text">See my work</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 3 · ABOUT + PROJECTS -->
+  <section id="projects">
+    <div class="about-inner">
+
+      <!-- Section header -->
+      <div class="section-header" style="text-align:left; margin-bottom:0;">
+        <p class="section-eyebrow">Selected projects</p>
+        <h2 class="section-title">My Work</h2>
+      </div>
+
+      <!-- Projects -->
+      <div>
+        <div class="projects-grid">
+
+          <!-- 1: Oncology NLP -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #C5DAFF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="30" width="80" height="22" rx="4" fill="#0073E5" opacity="0.15"/>
+                <rect x="20" y="30" width="80" height="22" rx="4" fill="none" stroke="#0073E5" stroke-width="1"/>
+                <text x="60" y="45" font-size="9" fill="#0073E5" text-anchor="middle" font-family="sans-serif">CANCER_DX</text>
+                <rect x="112" y="30" width="68" height="22" rx="4" fill="#6AA7FF" opacity="0.2"/>
+                <rect x="112" y="30" width="68" height="22" rx="4" fill="none" stroke="#6AA7FF" stroke-width="1"/>
+                <text x="146" y="45" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">STAGING</text>
+                <rect x="192" y="30" width="80" height="22" rx="4" fill="#8CC2FF" opacity="0.2"/>
+                <rect x="192" y="30" width="80" height="22" rx="4" fill="none" stroke="#8CC2FF" stroke-width="1"/>
+                <text x="232" y="45" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">CHEMOTHERAPY</text>
+                <rect x="20" y="65" width="55" height="22" rx="4" fill="#0073E5" opacity="0.12"/>
+                <rect x="20" y="65" width="55" height="22" rx="4" fill="none" stroke="#0073E5" stroke-width="1"/>
+                <text x="47" y="80" font-size="9" fill="#0073E5" text-anchor="middle" font-family="sans-serif">DOSAGE</text>
+                <rect x="87" y="65" width="70" height="22" rx="4" fill="#6AA7FF" opacity="0.15"/>
+                <rect x="87" y="65" width="70" height="22" rx="4" fill="none" stroke="#6AA7FF" stroke-width="1"/>
+                <text x="122" y="80" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">IMAGING_TEST</text>
+                <rect x="169" y="65" width="90" height="22" rx="4" fill="#8CC2FF" opacity="0.15"/>
+                <rect x="169" y="65" width="90" height="22" rx="4" fill="none" stroke="#8CC2FF" stroke-width="1"/>
+                <text x="214" y="80" font-size="9" fill="#434656" text-anchor="middle" font-family="sans-serif">TUMOR_FINDING</text>
+                <text x="160" y="115" font-size="10" fill="#617795" text-anchor="middle" font-family="sans-serif" font-weight="500">Clinical NLP · Named Entity Recognition</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Industry · John Snow Labs</span>
+              <p class="project-title">Oncology NLP Models</p>
+              <p class="project-desc">Built and presented state-of-the-art NLP models for oncology clinical text at the NLP Summit, using Spark NLP for named entity recognition across cancer-related entities.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://www.youtube.com/watch?v=7YYdpBidyDc" target="_blank">▶ NLP Summit Talk</a>
+                <a class="project-link" href="https://github.com/JohnSnowLabs/spark-nlp-workshop/blob/master/healthcare-nlp/21.0.Oncology_Model.ipynb" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2: Multiplex Classification -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #D0E8FF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="110" y="10" width="100" height="28" rx="6" fill="#0073E5"/>
+                <text x="160" y="28" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">Only 2 classes?</text>
+                <line x1="130" y1="38" x2="80" y2="62" stroke="#617795" stroke-width="1.5"/>
+                <line x1="190" y1="38" x2="240" y2="62" stroke="#617795" stroke-width="1.5"/>
+                <text x="100" y="58" font-size="8" fill="#617795" font-family="sans-serif">YES</text>
+                <text x="205" y="58" font-size="8" fill="#617795" font-family="sans-serif">NO</text>
+                <rect x="30" y="62" width="90" height="26" rx="6" fill="#6AA7FF" opacity="0.3"/>
+                <rect x="30" y="62" width="90" height="26" rx="6" fill="none" stroke="#6AA7FF" stroke-width="1.5"/>
+                <text x="75" y="79" font-size="8" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">BINARY</text>
+                <rect x="170" y="62" width="110" height="26" rx="6" fill="#0073E5"/>
+                <text x="225" y="79" font-size="8" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">One outcome/instance?</text>
+                <line x1="185" y1="88" x2="130" y2="108" stroke="#617795" stroke-width="1.5"/>
+                <line x1="265" y1="88" x2="280" y2="108" stroke="#617795" stroke-width="1.5"/>
+                <rect x="75" y="108" width="90" height="22" rx="5" fill="#8CC2FF" opacity="0.3"/>
+                <rect x="75" y="108" width="90" height="22" rx="5" fill="none" stroke="#8CC2FF" stroke-width="1"/>
+                <text x="120" y="122" font-size="8" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">MULTICLASS</text>
+                <rect x="235" y="108" width="70" height="22" rx="5" fill="#0073E5" opacity="0.2"/>
+                <rect x="235" y="108" width="70" height="22" rx="5" fill="none" stroke="#0073E5" stroke-width="1"/>
+                <text x="270" y="122" font-size="8" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">MULTIPLEX</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Research · Applied Ontology</span>
+              <p class="project-title">Multiplex Classification Framework</p>
+              <p class="project-desc">A theoretical framework for complex ML classification supporting any number of classes and logical relations between them, with application to medical image classification.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://doi.org/10.1177/15705838251340362" target="_blank">Read paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3: MultiCaRe -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #C8DFFF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="15" width="130" height="110" rx="8" fill="white" stroke="#0073E5" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="35" y="35" font-size="7.5" fill="#617795" font-family="sans-serif" font-weight="600">Clinical Case</text>
+                <text x="28" y="52" font-size="6.5" fill="#434656" font-family="sans-serif">A 52-year-old male presented</text>
+                <text x="28" y="63" font-size="6.5" fill="#434656" font-family="sans-serif">with dyspnea and bilateral</text>
+                <text x="28" y="74" font-size="6.5" fill="#434656" font-family="sans-serif">leg edema...</text>
+                <rect x="172" y="15" width="130" height="68" rx="8" fill="#1a1a2e" stroke="#6AA7FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="237" y="35" font-size="7.5" fill="#6AA7FF" text-anchor="middle" font-family="sans-serif" font-weight="600">Image</text>
+                <ellipse cx="237" cy="58" rx="28" ry="22" fill="#0073E5" opacity="0.3"/>
+                <ellipse cx="237" cy="58" rx="18" ry="14" fill="#0073E5" opacity="0.4"/>
+                <rect x="172" y="92" width="130" height="33" rx="8" fill="white" stroke="#8CC2FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="237" y="107" font-size="7" fill="#617795" text-anchor="middle" font-family="sans-serif">radiology · ultrasound · echo</text>
+                <text x="160" y="138" font-size="9" fill="#617795" text-anchor="middle" font-family="sans-serif" font-weight="500">100K+ cases · 140K+ images · PubMed Central</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Open Source · Published in Data</span>
+              <p class="project-title">MultiCaRe Dataset</p>
+              <p class="project-desc">An open-source multimodal dataset of 100K+ clinical cases and 140K+ medical images, built from PubMed Central case reports to advance clinical AI research.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://doi.org/10.3390/data10080123" target="_blank">Read paper</a>
+                <a class="project-link" href="https://github.com/mauro-nievoff/MultiCaRe_Dataset" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4: LLM Fine-tuning -->
+          <div class="project-card">
+            <div class="project-thumb" style="background: linear-gradient(135deg, #E7EFFF 0%, #C5DAFF 100%);">
+              <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="45" width="70" height="28" rx="6" fill="#0073E5" opacity="0.15"/>
+                <rect x="10" y="45" width="70" height="28" rx="6" fill="none" stroke="#0073E5" stroke-width="1.5"/>
+                <text x="45" y="57" font-size="7" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">Patient</text>
+                <text x="45" y="67" font-size="7" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">Information</text>
+                <rect x="10" y="82" width="70" height="28" rx="6" fill="#6AA7FF" opacity="0.15"/>
+                <rect x="10" y="82" width="70" height="28" rx="6" fill="none" stroke="#6AA7FF" stroke-width="1.5"/>
+                <text x="45" y="94" font-size="7" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">Clinical Trial</text>
+                <text x="45" y="104" font-size="7" fill="#434656" text-anchor="middle" font-family="sans-serif" font-weight="600">Information</text>
+                <line x1="80" y1="59" x2="110" y2="72" stroke="#617795" stroke-width="1.5" marker-end="url(#arr)"/>
+                <line x1="80" y1="96" x2="110" y2="83" stroke="#617795" stroke-width="1.5"/>
+                <circle cx="130" cy="72" r="18" fill="#0073E5"/>
+                <text x="130" y="69" font-size="7" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="700">GPT</text>
+                <text x="130" y="79" font-size="6" fill="white" text-anchor="middle" font-family="sans-serif">LLM</text>
+                <line x1="148" y1="72" x2="172" y2="72" stroke="#617795" stroke-width="1.5"/>
+                <rect x="172" y="55" width="60" height="34" rx="5" fill="white" stroke="#8CC2FF" stroke-width="1.5"/>
+                <text x="202" y="71" font-size="6.5" fill="#617795" text-anchor="middle" font-family="sans-serif">Output</text>
+                <text x="202" y="81" font-size="6.5" fill="#617795" text-anchor="middle" font-family="sans-serif">JSON</text>
+                <line x1="232" y1="72" x2="252" y2="72" stroke="#617795" stroke-width="1.5"/>
+                <rect x="252" y="55" width="60" height="34" rx="5" fill="#0073E5" opacity="0.15"/>
+                <rect x="252" y="55" width="60" height="34" rx="5" fill="none" stroke="#0073E5" stroke-width="1.5"/>
+                <text x="282" y="71" font-size="6.5" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">Trial</text>
+                <text x="282" y="81" font-size="6.5" fill="#0073E5" text-anchor="middle" font-family="sans-serif" font-weight="600">LLAMA</text>
+                <text x="160" y="120" font-size="9" fill="#617795" text-anchor="middle" font-family="sans-serif" font-weight="500">Performance parity with GPT · Published in JAMIA</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Research · Published in JAMIA</span>
+              <p class="project-title">LLM Fine-tuning for Clinical Trial Matching</p>
+              <p class="project-desc">Fine-tuned open-source LLMs for patient-to-clinical trial matching, achieving performance parity with proprietary models like GPT-4 at a fraction of the cost.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://doi.org/10.1093/jamia/ocae073" target="_blank">Read paper</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GitHub CTA -->
+        <div class="github-cta" style="margin-top:1.5rem;">
+          <a class="github-btn" href="https://github.com/mauro-nievoff" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View all my work on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="scroll-cta" href="#contact" style="color: var(--muted);">
+      <span class="scroll-cta-text">Get in touch with me</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 4 · CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+
+      <div class="contact-header">
+        <p class="section-eyebrow">Get in touch</p>
+        <h2 class="section-title">Let's work together</h2>
+        <p>Have a project in mind, need advice, or just want to connect? Pick whatever works best for you.</p>
+      </div>
+
+      <!-- Quick action buttons -->
+      <div class="contact-actions">
+        <a class="contact-btn btn-cal" href="https://cal.com/mauro-nievas-offidani/30min-call" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book a 30-min call
+        </a>
+        <a class="contact-btn btn-wa" href="https://wa.me/5492915470782" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.484 2 12.017c0 1.99.577 3.843 1.573 5.407L2 22l4.704-1.555A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+          WhatsApp me
+        </a>
+        <a class="contact-btn btn-li" href="https://www.linkedin.com/in/mauronievasoffidani/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <!-- Contact form -->
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="What's this about?" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or question..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send message →</button>
+      </form>
+
+      <!-- Footer row -->
+      <div class="contact-footer">
+        <button class="share-btn" onclick="sharePortfolio()">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share this portfolio
+        </button>
+        <p class="contact-copy">© 2025 Mauro Nievas Offidani</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Toast notification -->
+  <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
+  <script>
+    function sharePortfolio() {
+      const url = window.location.href.split('#')[0];
+      if (navigator.share) {
+        navigator.share({ title: 'Mauro Nievas Offidani — AI & Data Science for Healthcare', url });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          const toast = document.getElementById('shareToast');
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
