@@ -91,15 +91,13 @@
       line-height: 1.15;
     }
 
-    /* Credentials */
-    .hero-credentials {
+    /* Credentials inline */
+    .hero-credentials-inline {
       font-family: 'Neulis Sans', sans-serif;
-      font-size: clamp(0.85rem, 2vw, 1rem);
-      font-weight: 500;
-      color: var(--blue);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: -0.75rem;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.01em;
     }
 
     /* Tagline */
@@ -170,6 +168,95 @@
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(5px); }
+    }
+
+    /* ── SECTION 2 · WHO AM I ── */
+    #whois {
+      background: var(--white);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .whois-inner {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      min-height: 100vh;
+    }
+
+    .whois-photo {
+      flex: 0 0 42%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .whois-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 0 24px 24px 0;
+    }
+
+    .whois-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.75rem;
+      padding: 3rem 3rem 5rem 3rem;
+      overflow-y: auto;
+    }
+
+    .whois-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .whois-bio p {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--dark);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .whois-bio p:last-child { margin-bottom: 0; }
+
+    .whois-upwork {
+      font-family: 'Neulis Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(97,119,149,0.3);
+      padding-bottom: 1px;
+      display: inline-block;
+    }
+
+    @media (max-width: 860px) {
+      .whois-inner {
+        flex-direction: column;
+        height: auto;
+      }
+      .whois-photo {
+        flex: 0 0 40vh;
+        width: 100%;
+      }
+      .whois-photo img {
+        border-radius: 0 0 24px 24px;
+      }
+      .whois-content {
+        padding: 2rem 1.5rem 4rem;
+      }
+      .whois-metrics {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .whois-metrics { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* ── SECTION 2 · SERVICES ── */
@@ -714,21 +801,88 @@
   <!-- SECTION 1 · HERO -->
   <section id="hero">
     <div class="hero-inner">
-      <div class="avatar-ring">
-        <img src="profile_photo.jpg" alt="Mauro Nievas Offidani" />
-      </div>
-
-      <div>
-        <h1 class="hero-name">Mauro Nievas Offidani</h1>
-        <p class="hero-credentials">MD &nbsp;·&nbsp; PhD</p>
-      </div>
+      <h1 class="hero-name">Mauro Nievas Offidani<span class="hero-credentials-inline">, MD, PhD</span></h1>
 
       <div class="hero-divider"></div>
 
       <p class="hero-tagline">AI &amp; Data Science for Healthcare</p>
     </div>
 
-    <a class="scroll-cta" href="#services">
+    <a class="scroll-cta" href="#about">
+      <span class="scroll-cta-text">Who am I?</span>
+      <span class="scroll-cta-arrow">
+        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- SECTION 2 · WHO AM I -->
+  <section id="about">
+    <div class="whois-inner">
+      <div class="whois-photo">
+        <img src="profile_photo.jpg" alt="Mauro Nievas Offidani" />
+      </div>
+      <div class="whois-content">
+        <div>
+          <p class="section-eyebrow">Who am I?</p>
+          <h2 class="section-title">Background & Credentials</h2>
+        </div>
+
+        <div class="whois-metrics">
+          <div class="metric">
+            <span class="metric-value">7+</span>
+            <span class="metric-label">Years of experience</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">100%</span>
+            <span class="metric-label">Job Success on Upwork</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">$90K+</span>
+            <span class="metric-label">Earned on Upwork</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">4,000+</span>
+            <span class="metric-label">Hours logged</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">4</span>
+            <span class="metric-label">Peer-reviewed publications (1st author)</span>
+          </div>
+        </div>
+
+        <a class="whois-upwork" href="https://www.upwork.com/freelancers/~015df5a11ddda9bd9c" target="_blank">Verified on Upwork ↗</a>
+
+        <div class="whois-bio">
+          <p>I'm a Medical Doctor and Senior Data Scientist working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production.</p>
+          <p>My background is academic-solid and industry-tested: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant.</p>
+          <p>I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter.</p>
+        </div>
+
+        <div>
+          <p class="section-eyebrow" style="margin-bottom:0.75rem;">Tech stack</p>
+          <div class="skills-grid">
+            <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">Python</div>
+            <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">Google Cloud</div>
+            <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">GitHub</div>
+            <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">FastAPI</div>
+            <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neo4j/neo4j-original.svg" alt="Neo4j">Neo4j</div>
+            <div class="skill-chip skill-chip-badge">LangChain</div>
+            <div class="skill-chip skill-chip-badge">LangGraph</div>
+            <div class="skill-chip skill-chip-badge">N8N</div>
+            <div class="skill-chip skill-chip-badge">Hugging Face</div>
+            <div class="skill-chip skill-chip-badge">BigQuery</div>
+            <div class="skill-chip skill-chip-badge">Vertex AI</div>
+            <div class="skill-chip skill-chip-badge">FHIR</div>
+            <div class="skill-chip skill-chip-badge">HL7</div>
+            <div class="skill-chip skill-chip-badge">SNOMED CT</div>
+            <div class="skill-chip skill-chip-badge">DICOM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a class="scroll-cta" href="#services" style="color: var(--muted);">
       <span class="scroll-cta-text">What I can help you with</span>
       <span class="scroll-cta-arrow">
         <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
@@ -801,8 +955,8 @@
 
     </div>
 
-    <a class="scroll-cta" href="#about" style="color: var(--muted);">
-      <span class="scroll-cta-text">Why work with me?</span>
+    <a class="scroll-cta" href="#projects" style="color: var(--muted);">
+      <span class="scroll-cta-text">See my work</span>
       <span class="scroll-cta-arrow">
         <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
       </span>
@@ -810,78 +964,17 @@
   </section>
 
   <!-- SECTION 3 · ABOUT + PROJECTS -->
-  <section id="about">
+  <section id="projects">
     <div class="about-inner">
 
       <!-- Section header -->
       <div class="section-header" style="text-align:left; margin-bottom:0;">
-        <p class="section-eyebrow">Why work with me</p>
-        <h2 class="section-title">Background & Work</h2>
-      </div>
-
-      <!-- Metrics -->
-      <div class="metrics-row">
-        <div class="metric">
-          <span class="metric-value">7+</span>
-          <span class="metric-label">Years of experience</span>
-        </div>
-        <div class="metric">
-          <span class="metric-value">100%</span>
-          <span class="metric-label">Job Success on Upwork</span>
-        </div>
-        <div class="metric">
-          <span class="metric-value">$90K+</span>
-          <span class="metric-label">Earned on Upwork</span>
-        </div>
-        <div class="metric">
-          <span class="metric-value">4,000+</span>
-          <span class="metric-label">Hours logged</span>
-        </div>
-        <div class="metric">
-          <span class="metric-value">4</span>
-          <span class="metric-label">Peer-reviewed publications (1st author)</span>
-        </div>
-      </div>
-
-      <!-- Upwork verification link -->
-      <div style="text-align:center; margin-top:-2rem;">
-        <a href="https://www.upwork.com/freelancers/~015df5a11ddda9bd9c" target="_blank" style="font-family:'Neulis Sans',sans-serif; font-size:0.78rem; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:1px solid rgba(97,119,149,0.3); padding-bottom:1px; transition:color 0.2s;">Verified on Upwork ↗</a>
-      </div>
-
-      <!-- Bio -->
-      <div class="about-bio-block">
-        <p>I'm a Medical Doctor and Senior Data Scientist working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production.</p>
-        <p>My background is academic-solid and industry-tested: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant.</p>
-        <p>I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter.</p>
-      </div>
-
-      <!-- Skills -->
-      <div>
-        <p class="section-eyebrow" style="margin-bottom:1rem;">Tech stack</p>
-        <div class="skills-grid">
-          <!-- Logo chips -->
-          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">Python</div>
-          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">Google Cloud</div>
-          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">GitHub</div>
-          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">FastAPI</div>
-          <div class="skill-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neo4j/neo4j-original.svg" alt="Neo4j">Neo4j</div>
-          <!-- Text badge chips for tools without devicon logos -->
-          <div class="skill-chip skill-chip-badge">LangChain</div>
-          <div class="skill-chip skill-chip-badge">LangGraph</div>
-          <div class="skill-chip skill-chip-badge">N8N</div>
-          <div class="skill-chip skill-chip-badge">Hugging Face</div>
-          <div class="skill-chip skill-chip-badge">BigQuery</div>
-          <div class="skill-chip skill-chip-badge">Vertex AI</div>
-          <div class="skill-chip skill-chip-badge">FHIR</div>
-          <div class="skill-chip skill-chip-badge">HL7</div>
-          <div class="skill-chip skill-chip-badge">SNOMED CT</div>
-          <div class="skill-chip skill-chip-badge">DICOM</div>
-        </div>
+        <p class="section-eyebrow">Selected projects</p>
+        <h2 class="section-title">My Work</h2>
       </div>
 
       <!-- Projects -->
       <div>
-        <p class="section-eyebrow" style="margin-bottom:1rem;">Selected projects</p>
         <div class="projects-grid">
 
           <!-- 1: Oncology NLP -->
