@@ -356,15 +356,17 @@
       }
       .whois-metrics {
         width: 100%;
-        max-width: 320px;
+        max-width: 360px;
         grid-template-columns: repeat(3, 1fr);
         gap: 0.3rem;
-        padding: 0 1rem;
+        padding: 0 0.75rem;
         justify-items: center;
         margin: 0 auto;
       }
       .whois-metrics .metric {
         width: 100%;
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
       }
       .whois-upwork {
         justify-content: center;
@@ -378,19 +380,22 @@
     @media (max-width: 480px) {
       .whois-metrics .metric-value { font-size: 1.1rem; }
       .whois-metrics .metric-label { font-size: 0.58rem; }
-      .whois-bio-mobile p { font-size: 0.82rem; line-height: 1.35; }
-      .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.3rem; }
+      .whois-bio-mobile p { font-size: 0.76rem; line-height: 1.3; }
+      .tech-grid {
+        grid-template-columns: repeat(4, 56px);
+        gap: 0.3rem;
+        justify-content: center;
+      }
       .tech-card {
-        width: auto;
-        height: auto;
-        aspect-ratio: 1/1;
+        width: 56px;
+        height: 56px;
         padding: 0.15rem;
         gap: 0.1rem;
         border-radius: 7px;
       }
-      .tech-card img { width: 20px; height: 20px; }
-      .tech-card-badge { width: 20px; height: 20px; font-size: 0.38rem; border-radius: 5px; }
-      .tech-card span { font-size: 0.46rem; line-height: 1.05; }
+      .tech-card img { width: 18px; height: 18px; }
+      .tech-card-badge { width: 18px; height: 18px; font-size: 0.34rem; border-radius: 5px; }
+      .tech-card span { font-size: 0.42rem; line-height: 1.05; }
     }
 
     /* ── SECTION 2 · SERVICES ── */
@@ -715,7 +720,6 @@
 
     @media (max-width: 480px) {
       .metrics-row { grid-template-columns: repeat(2, 1fr); }
-      #about { padding: 4rem 1.25rem 5rem; }
     }
 
     /* ── SECTION 4 · CONTACT ── */
