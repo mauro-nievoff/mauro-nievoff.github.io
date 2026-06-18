@@ -337,9 +337,9 @@
         flex-direction: column;
         align-items: center;
         border-right: none;
-        border-bottom: 1px solid var(--blue-pale);
-        padding: 0 0 0.6rem;
-        gap: 0.4rem;
+        border-bottom: none;
+        padding: 0 0 0.4rem;
+        gap: 0.3rem;
       }
       .whois-photo {
         width: 100%;
@@ -356,10 +356,10 @@
       }
       .whois-metrics {
         width: 100%;
-        max-width: 240px;
+        max-width: 320px;
         grid-template-columns: repeat(3, 1fr);
         gap: 0.3rem;
-        padding: 0 1.25rem;
+        padding: 0 1rem;
         justify-items: center;
         margin: 0 auto;
       }
@@ -368,30 +368,29 @@
       }
       .whois-upwork {
         justify-content: center;
-        margin-top: 0.1rem;
+        margin-top: 0;
       }
-      .whois-content { padding: 0.5rem 1rem 1.5rem; gap: 0.5rem; }
+      .whois-content { padding: 0.25rem 1rem 1.5rem; gap: 0.4rem; }
       .whois-bio-desktop { display: none; }
       .whois-bio-mobile { display: block; }
     }
 
     @media (max-width: 480px) {
-      .whois-metrics .metric-value { font-size: 1.15rem; }
-      .whois-metrics .metric-label { font-size: 0.6rem; }
-      .whois-bio-mobile p { font-size: 0.72rem; line-height: 1.3; }
-      .whois-bio-mobile p br + br { display: none; }
-      .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
+      .whois-metrics .metric-value { font-size: 1.1rem; }
+      .whois-metrics .metric-label { font-size: 0.58rem; }
+      .whois-bio-mobile p { font-size: 0.82rem; line-height: 1.35; }
+      .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 0.3rem; }
       .tech-card {
         width: auto;
         height: auto;
         aspect-ratio: 1/1;
-        padding: 0.25rem;
-        gap: 0.15rem;
-        border-radius: 8px;
+        padding: 0.15rem;
+        gap: 0.1rem;
+        border-radius: 7px;
       }
       .tech-card img { width: 20px; height: 20px; }
       .tech-card-badge { width: 20px; height: 20px; font-size: 0.38rem; border-radius: 5px; }
-      .tech-card span { font-size: 0.48rem; line-height: 1.1; }
+      .tech-card span { font-size: 0.46rem; line-height: 1.05; }
     }
 
     /* ── SECTION 2 · SERVICES ── */
@@ -986,7 +985,7 @@
           <p>I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter. This is <strong>my tech stack</strong>:</p>
         </div>
         <div class="whois-bio whois-bio-mobile">
-          <p>Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI.<br><br>My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects.<br><br>This is <strong>my tech stack</strong>:</p>
+          <p>Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects.<br><br>This is <strong>my tech stack</strong>:</p>
         </div>
 
         <div>
