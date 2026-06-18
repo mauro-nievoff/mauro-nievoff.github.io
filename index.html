@@ -333,24 +333,47 @@
       }
       .whois-left {
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        align-items: flex-start;
         border-right: none;
         border-bottom: 1px solid var(--blue-pale);
-        padding: 2rem 1.5rem 1.5rem;
+        padding: 2rem 1.25rem 1.5rem;
         justify-content: center;
+        gap: 1rem;
       }
-      .whois-photo { max-width: 140px; }
+      .whois-photo {
+        flex: 0 0 50%;
+        max-width: 50%;
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+      }
+      .whois-photo img {
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% top;
+      }
+      .whois-metrics {
+        flex: 0 0 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+      .whois-upwork {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.25rem;
+      }
       .whois-content { padding: 1.5rem 1.5rem 4rem; }
     }
 
     @media (max-width: 480px) {
-      .whois-metrics { grid-template-columns: repeat(3, 1fr); }
-      .tech-grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+      .tech-grid { grid-template-columns: repeat(4, 1fr); }
+      .tech-card { width: auto; height: auto; aspect-ratio: 1/1; }
     }
 
     /* ── SECTION 2 · SERVICES ── */
     #services {
-      background: var(--blue-pale);
+      background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
       padding: 5rem 2rem;
     }
 
@@ -470,7 +493,7 @@
 
     /* ── SECTION 3 · PROJECTS ── */
     #projects {
-      background: var(--white);
+      background: linear-gradient(135deg, #F0F6FF 0%, #FFFFFF 60%, #E7EFFF 100%);
       padding: 5rem 2rem 6rem;
       align-items: center;
     }
