@@ -931,7 +931,7 @@
 
     /* ── SECTION 4 · CONTACT ── */
     #contact {
-      background: var(--dark);
+      background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
       padding: 5rem 2rem;
       align-items: center;
       justify-content: center;
@@ -947,14 +947,14 @@
 
     .contact-header { text-align: center; }
 
-    .contact-header .section-eyebrow { color: var(--blue-mid); }
+    .contact-header .section-eyebrow { color: var(--blue); }
 
-    .contact-header .section-title { color: var(--white); }
+    .contact-header .section-title { color: var(--dark); }
 
     .contact-header p {
       font-family: 'Lato', sans-serif;
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.5);
+      color: var(--muted);
       margin-top: 0.75rem;
       line-height: 1.6;
     }
@@ -1005,8 +1005,8 @@
 
     /* Contact form */
     .contact-form {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--white);
+      border: 1px solid rgba(0,115,229,0.1);
       border-radius: 16px;
       padding: 2rem;
       display: flex;
@@ -1030,30 +1030,30 @@
       font-family: 'Lato', sans-serif;
       font-size: 0.75rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.5);
+      color: var(--muted);
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
     .form-group input,
     .form-group textarea {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--blue-pale);
+      border: 1px solid rgba(0,115,229,0.15);
       border-radius: 8px;
       padding: 0.65rem 0.9rem;
       font-family: 'Lato', sans-serif;
       font-size: 0.88rem;
-      color: var(--white);
+      color: var(--dark);
       outline: none;
       transition: border-color 0.2s;
       width: 100%;
     }
 
     .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group textarea::placeholder { color: var(--muted); opacity: 0.6; }
 
     .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--blue-mid); }
+    .form-group textarea:focus { border-color: var(--blue); outline: none; }
 
     .form-group textarea { resize: vertical; min-height: 100px; }
 
@@ -1080,12 +1080,12 @@
       justify-content: center;
       gap: 0.5rem;
       text-decoration: none;
-      color: rgba(255,255,255,0.5);
+      color: var(--muted);
       transition: color 0.2s;
       margin: -0.5rem 0 0.5rem;
     }
 
-    .back-to-top:hover { color: var(--blue-mid); }
+    .back-to-top:hover { color: var(--blue); }
 
     .back-to-top .scroll-cta-arrow {
       width: 26px;
@@ -1119,7 +1119,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(0,115,229,0.1);
     }
 
     .share-btn {
@@ -1145,7 +1145,7 @@
     .contact-copy {
       font-family: 'Lato', sans-serif;
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.25);
+      color: var(--muted);
     }
 
     .share-toast {
@@ -1237,10 +1237,13 @@
     }
     /* ── LANGUAGE TOGGLE ── */
     .lang-toggle {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
       align-items: center;
       gap: 0.25rem;
-      margin-left: 2rem;
     }
 
     .lang-btn {
@@ -1393,7 +1396,7 @@
         <div class="service-card-inner">
           <div class="service-card-front">
             <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service-end-to-end.png" alt="End-to-End AI Projects" style="width: 85%; height: 85%; object-fit: contain;">
+              <img src="images/service-end-to-end.png" alt="End-to-End AI Projects" style="width: 95%; height: 95%; object-fit: contain;">
             </div>
             <p class="service-title" data-en="End-to-End AI Projects" data-es="Proyectos de IA end-to-end">End-to-End AI Projects</p>
             <p class="service-desc service-desc-front" data-en="From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments." data-es="Desde el diseño hasta la implementación: pipelines RAG, sistemas de NLP, modelos de imágenes médicas y otros, construidos para entornos clínicos reales.">From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments.</p>
@@ -1409,7 +1412,7 @@
         <div class="service-card-inner">
           <div class="service-card-front">
             <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service-strategy.png" alt="AI Strategy & Consulting" style="width: 85%; height: 85%; object-fit: contain;">
+              <img src="images/service-strategy.png" alt="AI Strategy & Consulting" style="width: 95%; height: 95%; object-fit: contain;">
             </div>
             <p class="service-title" data-en="AI Strategy & Consulting" data-es="Estrategia y Consultoría">AI Strategy & Consulting</p>
             <p class="service-desc service-desc-front" data-en="Helping healthcare organizations identify where AI creates value and how to implement it responsibly." data-es="Ayudo a organizaciones de salud a identificar dónde la IA crea valor y cómo implementarla de forma responsable.">Helping healthcare organizations identify where AI creates value and how to implement it responsibly.</p>
@@ -1425,7 +1428,7 @@
         <div class="service-card-inner">
           <div class="service-card-front">
             <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service-automations.png" alt="Clinical Automations" style="width: 85%; height: 85%; object-fit: contain;">
+              <img src="images/service-automations.png" alt="Clinical Automations" style="width: 95%; height: 95%; object-fit: contain;">
             </div>
             <p class="service-title" data-en="Clinical Automations" data-es="Automatizaciones Clínicas">Clinical Automations</p>
             <p class="service-desc service-desc-front" data-en="Streamlining repetitive clinical and administrative workflows using AI agents and automation tools." data-es="Optimización de flujos de trabajo clínicos y administrativos repetitivos mediante agentes de IA y herramientas de automatización.">Streamlining repetitive clinical and administrative workflows using AI agents and automation tools.</p>
@@ -1707,7 +1710,7 @@
         </a>
         <a class="contact-btn btn-li" href="https://www.linkedin.com/in/mauronievasoffidani/" target="_blank">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <span data-en="Connect through LinkedIn" data-es="Conectar a través de LinkedIn">Connect through LinkedIn</span>
+          <span data-en="Connect through LinkedIn" data-es="Conectar por LinkedIn">Connect through LinkedIn</span>
         </a>
       </div>
 
@@ -1754,29 +1757,28 @@
 
   <script>
     function setLang(lang) {
-      // Update button states
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-es').classList.toggle('active', lang === 'es');
 
-      // Swap text content for all elements with data-en/data-es
       document.querySelectorAll('[data-en]').forEach(el => {
         const text = el.getAttribute('data-' + lang);
         if (!text) return;
-        // Preserve child elements (strong, img, svg, span) — only swap if element has no important children
-        const hasImportantChildren = [...el.children].some(c =>
-          ['STRONG', 'IMG', 'SVG', 'BR'].includes(c.tagName)
-        );
-        if (!hasImportantChildren) {
+        // Always use innerHTML replacement — store original HTML if needed
+        // For elements with child tags (strong, br etc), use innerHTML
+        // For plain text elements, use textContent
+        const tag = el.tagName;
+        if (['P', 'H1', 'H2', 'H3', 'SPAN', 'A', 'LABEL', 'BUTTON'].includes(tag)) {
+          el.innerHTML = text;
+        } else {
           el.textContent = text;
         }
       });
 
       // Swap placeholder attributes
-      document.querySelectorAll('[data-ph-' + lang + ']').forEach(el => {
-        el.placeholder = el.getAttribute('data-ph-' + lang);
+      document.querySelectorAll('[data-ph-en]').forEach(el => {
+        el.placeholder = el.getAttribute('data-ph-' + lang) || el.getAttribute('data-ph-en');
       });
 
-      // Store preference
       localStorage.setItem('lang', lang);
     }
 
