@@ -424,8 +424,8 @@
     /* ── SECTION 2 · SERVICES ── */
     #services {
       background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
-      padding: 2rem 2rem 5rem;
-      justify-content: flex-start;
+      padding: 5rem 2rem;
+      justify-content: center;
     }
 
     .section-header {
@@ -655,9 +655,9 @@
     /* ── SECTION 3 · PROJECTS ── */
     #projects {
       background: linear-gradient(135deg, #F0F6FF 0%, #FFFFFF 60%, #E7EFFF 100%);
-      padding: 2rem 2rem 5rem;
+      padding: 5rem 2rem;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
     }
 
     .about-inner {
@@ -1258,6 +1258,31 @@
       text-align: center;
       width: 100%;
       padding-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title-wrap .section-title {
+      display: inline-block;
+    }
+
+    .navbar-logo {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .navbar-logo:hover { opacity: 0.75; }
+
+    @media (max-width: 640px) {
+      .navbar-logo { font-size: 0.7rem; max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
     }
 
     /* ── HAMBURGER MENU ── */
@@ -1373,6 +1398,7 @@
 
   <!-- NAV BAR -->
   <nav class="navbar">
+    <a class="navbar-logo" href="#hero">Mauro Nievas Offidani</a>
     <div class="navbar-links">
       <a class="navbar-link" href="#hero" data-en="Home" data-es="Inicio">Home</a>
       <a class="navbar-link" href="#about" data-en="About Me" data-es="Sobre mí">About Me</a>
