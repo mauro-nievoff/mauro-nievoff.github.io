@@ -1246,6 +1246,22 @@
       .navbar-links { gap: 0.7rem; }
       .navbar-link { font-size: 0.62rem; }
     }
+
+    /* ── SECTION TITLES ── */
+    .section-heading {
+      position: absolute;
+      top: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      white-space: nowrap;
+      opacity: 0.7;
+    }
     /* ── HAMBURGER MENU ── */
     .hamburger {
       display: none;
@@ -1401,16 +1417,11 @@
       <p class="hero-tagline" data-en="AI &amp; Data Science for Healthcare" data-es="IA y Ciencia de Datos para la Salud">AI &amp; Data Science for Healthcare</p>
     </div>
 
-    <a class="scroll-cta" href="#about">
-      <span class="scroll-cta-text" data-en="About Me" data-es="Sobre mí">About Me</span>
-      <span class="scroll-cta-arrow">
-        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
-      </span>
-    </a>
   </section>
 
   <!-- SECTION 2 · WHO AM I -->
   <section id="about">
+    <p class="section-heading" data-en="About Me" data-es="Sobre mí">About Me</p>
     <div class="whois-inner">
 
       <!-- Left: photo + metrics -->
@@ -1482,6 +1493,7 @@
 
   <!-- SECTION 2 · SERVICES -->
   <section id="services">
+    <p class="section-heading" data-en="My Services" data-es="Mis Servicios">My Services</p>
     <div class="services-grid">
 
       <!-- 1 -->
@@ -1592,6 +1604,7 @@
 
   <!-- SECTION 3 · ABOUT + PROJECTS -->
   <section id="projects">
+    <p class="section-heading" data-en="My Projects" data-es="Mis Proyectos">My Projects</p>
     <div class="about-inner">
 
       <!-- Projects -->
@@ -1773,17 +1786,11 @@
       </div>
 
     </div>
-
-    <a class="scroll-cta" href="#contact" style="color: var(--muted);">
-      <span class="scroll-cta-text" data-en="Contact Me" data-es="Contacto">Contact Me</span>
-      <span class="scroll-cta-arrow">
-        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
-      </span>
-    </a>
   </section>
 
   <!-- SECTION 4 · CONTACT -->
   <section id="contact">
+    <p class="section-heading" data-en="Contact Me" data-es="Contacto">Contact Me</p>
     <div class="contact-inner">
 
       <div class="contact-header">
