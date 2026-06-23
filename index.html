@@ -1250,17 +1250,17 @@
     /* ── SECTION TITLES ── */
     .section-heading {
       position: absolute;
-      top: 1.2rem;
+      top: 4rem;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Roboto', sans-serif;
-      font-size: 0.7rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--blue);
       white-space: nowrap;
-      opacity: 0.7;
+      z-index: 10;
     }
     /* ── HAMBURGER MENU ── */
     .hamburger {
@@ -1483,12 +1483,6 @@
 
     </div>
 
-    <a class="scroll-cta" href="#services" style="color: var(--muted);">
-      <span class="scroll-cta-text" data-en="My Services" data-es="Mis Servicios">My Services</span>
-      <span class="scroll-cta-arrow">
-        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
-      </span>
-    </a>
   </section>
 
   <!-- SECTION 2 · SERVICES -->
@@ -1548,8 +1542,8 @@
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: linear-gradient(135deg, #6AA7FF 0%, #434656 100%);">
-              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+            <div class="service-image" style="background: var(--blue-pale);">
+              <img src="images/service_database.png" alt="Medical Database Design & Interoperability" style="width: 95%; height: 95%; object-fit: contain;">
             </div>
             <p class="service-title" data-en="Medical Database Design & Interoperability" data-es="Diseño de Bases de Datos Médicas e Interoperabilidad">Medical Database Design & Interoperability</p>
             <p class="service-desc service-desc-front" data-en="Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards." data-es="Diseño de bases de datos clínicas estructuradas e integración de estándares de interoperabilidad como FHIR, HL7 y SNOMED CT.">Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards.</p>
@@ -1564,8 +1558,8 @@
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: linear-gradient(135deg, #8CC2FF 0%, #0073E5 100%);">
-              <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+            <div class="service-image" style="background: var(--blue-pale);">
+              <img src="images/service_research.png" alt="Research & Development" style="width: 95%; height: 95%; object-fit: contain;">
             </div>
             <p class="service-title" data-en="Research & Development" data-es="Investigación y Desarrollo">Research & Development</p>
             <p class="service-desc service-desc-front" data-en="Collaborating on applied research projects at the intersection of medicine, data science, and AI." data-es="Colaboración en proyectos de investigación aplicada en la intersección de la medicina, la ciencia de datos y la IA.">Collaborating on applied research projects at the intersection of medicine, data science, and AI.</p>
@@ -1580,8 +1574,8 @@
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: linear-gradient(135deg, #434656 0%, #0073E5 100%);">
-              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div class="service-image" style="background: var(--blue-pale);">
+              <img src="images/service_visualization.png" alt="Clinical Data Analysis & Visualization" style="width: 95%; height: 95%; object-fit: contain;">
             </div>
             <p class="service-title" data-en="Clinical Data Analysis & Visualization" data-es="Análisis y Visualización de Datos Clínicos">Clinical Data Analysis & Visualization</p>
             <p class="service-desc service-desc-front" data-en="Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling." data-es="Transformación de conjuntos de datos clínicos complejos en información clara y accionable, mediante análisis riguroso y visualización efectiva.">Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling.</p>
@@ -1594,12 +1588,6 @@
 
     </div>
 
-    <a class="scroll-cta" href="#projects" style="color: var(--muted);">
-      <span class="scroll-cta-text" data-en="My Projects" data-es="Mis Proyectos">My Projects</span>
-      <span class="scroll-cta-arrow">
-        <svg viewBox="0 0 14 14"><polyline points="2,4 7,10 12,4"/></svg>
-      </span>
-    </a>
   </section>
 
   <!-- SECTION 3 · ABOUT + PROJECTS -->
