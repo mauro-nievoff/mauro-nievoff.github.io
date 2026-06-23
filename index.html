@@ -179,6 +179,7 @@
       background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
       padding: 0;
       overflow: hidden;
+      justify-content: flex-start;
     }
 
     .whois-inner {
@@ -1247,21 +1248,16 @@
       .navbar-link { font-size: 0.62rem; }
     }
 
-    /* ── SECTION TITLES ── */
-    .section-heading {
-      position: absolute;
-      top: 4rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--blue);
-      white-space: nowrap;
-      z-index: 10;
+
+
+    /* ── SECTION TITLE HEADERS ── */
+    .section-header-top {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-top: 3.5rem;
+      width: 100%;
     }
+
     /* ── HAMBURGER MENU ── */
     .hamburger {
       display: none;
@@ -1421,7 +1417,7 @@
 
   <!-- SECTION 2 · WHO AM I -->
   <section id="about">
-    <p class="section-heading" data-en="About Me" data-es="Sobre mí">About Me</p>
+    <div class="section-header-top"><h2 class="section-title" data-en="About Me" data-es="Sobre mí">About Me</h2></div>
     <div class="whois-inner">
 
       <!-- Left: photo + metrics -->
@@ -1487,7 +1483,7 @@
 
   <!-- SECTION 2 · SERVICES -->
   <section id="services">
-    <p class="section-heading" data-en="My Services" data-es="Mis Servicios">My Services</p>
+    <div class="section-header-top"><h2 class="section-title" data-en="My Services" data-es="Mis Servicios">My Services</h2></div>
     <div class="services-grid">
 
       <!-- 1 -->
@@ -1592,7 +1588,7 @@
 
   <!-- SECTION 3 · ABOUT + PROJECTS -->
   <section id="projects">
-    <p class="section-heading" data-en="My Projects" data-es="Mis Proyectos">My Projects</p>
+    <div class="section-header-top"><h2 class="section-title" data-en="My Projects" data-es="Mis Proyectos">My Projects</h2></div>
     <div class="about-inner">
 
       <!-- Projects -->
@@ -1778,7 +1774,6 @@
 
   <!-- SECTION 4 · CONTACT -->
   <section id="contact">
-    <p class="section-heading" data-en="Contact Me" data-es="Contacto">Contact Me</p>
     <div class="contact-inner">
 
       <div class="contact-header">
