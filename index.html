@@ -365,6 +365,9 @@
         padding: 0;
         gap: 0.7rem;
       }
+      .whois-photo { order: 1; }
+      .whois-metrics { order: 2; }
+      .whois-upwork { order: 3; }
       .whois-photo {
         width: 100%;
         max-width: 100%;
@@ -772,6 +775,40 @@
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
       /* Contact */
       .contact-inner { padding-top: 4rem; }
+    }
+
+    /* ── MOBILE OVERRIDES (must come after 1024px to win cascade) ── */
+    @media (max-width: 480px) {
+      /* Hero: full width image, normal section height */
+      section { min-height: 100vh; }
+      .hero-image-wrap { width: 98vw !important; }
+      .hero-name { font-size: clamp(1.6rem, 4vw, 2.6rem) !important; }
+      .hero-credentials-inline { font-size: clamp(1.6rem, 4vw, 2.6rem) !important; }
+      .hero-tagline { font-size: clamp(1.15rem, 2.2vw, 1.45rem) !important; }
+
+      /* Services: FORCE 1 column */
+      .services-grid { grid-template-columns: 1fr !important; }
+
+      /* Tech stack: larger cards */
+      .tech-card { width: 100% !important; height: auto !important; aspect-ratio: unset !important; padding: 0.75rem !important; flex-direction: column !important; align-items: center !important; }
+      .tech-card img { width: 36px !important; height: 36px !important; }
+      .tech-card-badge { width: 36px !important; height: 36px !important; font-size: 0.6rem !important; }
+      .tech-card span { font-size: 1.05rem !important; }
+      .tech-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.6rem !important; }
+    }
+
+    /* ── TABLET 768px OVERRIDES (after 1024px) ── */
+    @media (max-width: 768px) and (min-width: 481px) {
+      /* Hero: reasonable size */
+      .hero-image-wrap { width: clamp(260px, 60vw, 500px) !important; }
+      .hero-name { font-size: clamp(1.4rem, 3.5vw, 2rem) !important; }
+      .hero-tagline { font-size: clamp(1rem, 2vw, 1.2rem) !important; }
+
+      /* Upwork: ensure it's below metrics */
+      .whois-left { flex-direction: column !important; }
+      .whois-photo { order: 1; }
+      .whois-metrics { order: 2; }
+      .whois-upwork { order: 3; margin-top: 0.5rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
