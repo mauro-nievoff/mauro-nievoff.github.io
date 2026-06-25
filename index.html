@@ -270,7 +270,7 @@
       justify-content: center;
       gap: 2rem;
       padding: 1.5rem 3rem 4rem 3rem;
-      overflow-y: auto;
+      overflow-y: visible;
     }
 
     .whois-bio p {
@@ -295,8 +295,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
       gap: 0.75rem;
-      justify-content: center;
-      max-width: 560px;
+      width: 100%;
     }
 
     .tech-card {
@@ -339,7 +338,7 @@
 
     .tech-card span {
       font-family: 'Lato', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--dark);
       text-align: center;
@@ -574,7 +573,7 @@
     @media (max-width: 480px) {
       .services-grid {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
+        gap: 1rem;
       }
       #services {
         padding-top: 4rem;
@@ -648,7 +647,7 @@
         min-height: 0;
       }
       .service-image {
-        aspect-ratio: 16 / 8;
+        aspect-ratio: 16 / 9;
       }
       .service-image svg {
         width: 40px;
@@ -681,26 +680,45 @@
 
     /* ── 1024px LANDSCAPE TABLET ── */
     @media (max-width: 1024px) {
-      /* Services: 2x3 grid */
+      /* Hero: smaller image and text */
+      .hero-image-wrap { width: clamp(200px, 45vw, 420px); }
+      .hero-name { font-size: clamp(1.2rem, 3vw, 2rem); }
+      .hero-credentials-inline { font-size: clamp(1.2rem, 3vw, 2rem); }
+      .hero-tagline { font-size: clamp(0.85rem, 1.5vw, 1.1rem); }
+
+      /* About: smaller photo, more compact */
+      .whois-left { flex: 0 0 28%; padding: 1rem 1rem 3rem 1.5rem; }
+      .whois-content { padding: 1.5rem 2rem 3rem; gap: 1.25rem; }
+      .whois-bio p { font-size: 0.9rem; }
+      .whois-metrics .metric-value { font-size: clamp(1rem, 2vw, 1.5rem); }
+      .whois-metrics .metric-label { font-size: 0.65rem; }
+      .tech-card span { font-size: 0.72rem; }
+      .tech-card img, .tech-card-badge { width: 32px; height: 32px; }
+
+      /* Services: 2x3 grid, smaller cards */
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
         max-width: 700px;
         margin: 0 auto;
       }
+      .service-image { aspect-ratio: 16 / 8; }
+      .service-title { font-size: 0.95rem; min-height: 2rem; }
+      .service-desc { font-size: 0.78rem; }
+
       /* Projects: 2x2 */
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 760px;
-      }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+      .project-thumb { height: 220px; }
+      .project-title { font-size: 1.05rem; }
+      .project-desc { font-size: 0.88rem; }
+
       /* Tech grid: 4 cols */
-      .tech-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        max-width: 500px;
-      }
-      /* Whois two-column layout: reduce photo */
-      .whois-left { flex: 0 0 30%; }
-      /* Section title clearance */
+      .tech-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+
+      /* Section titles */
       .section-title-wrap { padding-top: 4rem; }
+
+      /* Contact */
+      .contact-inner { padding-top: 4rem; }
     }
 
     /* ── 768px PORTRAIT TABLET ── */
@@ -741,6 +759,8 @@
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       /* Projects: 2x2 */
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      /* Contact */
+      .contact-inner { padding-top: 4rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -871,15 +891,17 @@
       display: flex;
       flex-direction: column;
       background: var(--white);
-      border: 1px solid rgba(0,115,229,0.1);
+      border: 2px solid rgba(0,115,229,0.25);
       border-radius: 16px;
       overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,115,229,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .project-card:hover .project-card-front {
       transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,115,229,0.1);
+      box-shadow: 0 12px 32px rgba(0,115,229,0.2);
+      border-color: var(--blue);
     }
 
     .project-card-back {
@@ -1063,7 +1085,7 @@
     /* ── SECTION 4 · CONTACT ── */
     #contact {
       background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
-      padding: 1rem 2rem 4rem;
+      padding: 0 2rem 4rem;
       align-items: center;
       justify-content: flex-start;
     }
@@ -1074,6 +1096,7 @@
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
+      padding-top: 3.5rem;
     }
 
     .contact-header { text-align: center; }
