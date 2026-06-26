@@ -495,12 +495,13 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      padding-bottom: 1.4rem;
+      gap: 0;
+      padding-bottom: 0;
       border-radius: 16px;
-      border: 1px solid rgba(0, 115, 229, 0.08);
+      border: 2px solid rgba(0,115,229,0.22);
       overflow: hidden;
       background: var(--white);
+      box-shadow: 0 3px 12px rgba(0,115,229,0.07);
       transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
 
@@ -520,14 +521,14 @@
     }
 
     .service-card-front .service-title,
-    .service-card-front .service-desc-front {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
+    .service-card-front .service-desc {
+      padding-left: 0.85rem;
+      padding-right: 0.85rem;
     }
 
     .service-image {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16 / 8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -547,24 +548,24 @@
 
     .service-title {
       font-family: 'Roboto', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--dark);
       line-height: 1.3;
-      margin-top: 0.35rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.25rem;
       text-align: center;
-      padding: 0 0.5rem 0.5rem;
       display: block;
     }
 
     .service-desc {
       font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 400;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.5;
       text-align: center;
-      padding: 0 0.5rem 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
     @media (max-width: 720px) {
@@ -941,10 +942,10 @@
       display: flex;
       flex-direction: column;
       background: var(--white);
-      border: 2px solid rgba(0,115,229,0.2);
+      border: 2px solid rgba(0,115,229,0.22);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,115,229,0.07);
+      box-shadow: 0 3px 12px rgba(0,115,229,0.07);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -974,6 +975,8 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      background: var(--blue-pale);
+      flex: 1;
     }
 
     .project-title {
@@ -999,6 +1002,7 @@
       margin-top: 0.4rem;
       flex-wrap: wrap;
       justify-content: center;
+      padding-bottom: 0.5rem;
     }
 
     .project-link {
@@ -1827,6 +1831,11 @@
                 </div>
                 <div class="project-body">
                   <p class="project-title" data-en="MultiCaRe Dataset" data-es="Dataset MultiCaRe">MultiCaRe Dataset</p>
+                  <div class="project-links">
+                    <a class="project-link" href="https://doi.org/10.3390/data10080123" target="_blank">Read paper</a>
+                    <a class="project-link" href="https://github.com/mauro-nievoff/MultiCaRe_Dataset" target="_blank">GitHub</a>
+                    <a class="project-link" href="https://zenodo.org/records/20416562" target="_blank">Zenodo</a>
+                  </div>
                   <p class="project-desc" data-en="An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>, built from PubMed Central case reports to advance clinical AI research." data-es="Un <strong>dataset multimodal de código abierto con más de 100K casos clínicos y 140K imágenes médicas</strong>, construido a partir de reportes de casos de PubMed Central para contribuir con la investigación en IA clínica.">An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>, built from PubMed Central case reports to advance clinical AI research.</p>
                 </div>
               </div>
@@ -1850,6 +1859,9 @@
                 </div>
                 <div class="project-body">
                   <p class="project-title" data-en="Multiplex Classification Framework" data-es="Framework de Clasificación Multiplex">Multiplex Classification Framework</p>
+                  <div class="project-links">
+                    <a class="project-link" href="https://doi.org/10.1177/15705838251340362" target="_blank">Read paper</a>
+                  </div>
                   <p class="project-desc" data-en="A <strong>theoretical framework for complex ML classification</strong> supporting any number of classes and logical relations between them, with application to <strong>medical image classification</strong>." data-es="Un <strong>framework teórico para clasificación ML compleja</strong> que soporta cualquier número de clases y relaciones lógicas entre ellas, con aplicación en <strong>clasificación de imágenes médicas</strong>.">A <strong>theoretical framework for complex ML classification</strong> supporting any number of classes and logical relations between them, with application to <strong>medical image classification</strong>.</p>
                 </div>
               </div>
@@ -1871,6 +1883,9 @@
                 </div>
                 <div class="project-body">
                   <p class="project-title" data-en="LLM Fine-tuning for Clinical Trial Matching" data-es="Fine-tuning de LLMs para Asignación a Ensayos Clínicos">LLM Fine-tuning for Clinical Trial Matching</p>
+                  <div class="project-links">
+                    <a class="project-link" href="https://doi.org/10.1093/jamia/ocae073" target="_blank">Read paper</a>
+                  </div>
                   <p class="project-desc" data-en="<strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost." data-es="<strong>Fine-tuning de LLMs de código abierto</strong> para la asignación de pacientes a ensayos clínicos, logrando <strong>paridad de rendimiento con modelos propietarios como GPT-4</strong> a una fracción del costo."><strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost.</p>
                 </div>
               </div>
@@ -1892,6 +1907,9 @@
                 </div>
                 <div class="project-body">
                   <p class="project-title" data-en="Oncology NLP Models" data-es="Modelos de NLP en Oncología">Oncology NLP Models</p>
+                  <div class="project-links">
+                    <a class="project-link" href="https://www.youtube.com/watch?v=7YYdpBidyDc" target="_blank">▶ NLP Summit Talk</a>
+                  </div>
                   <p class="project-desc" data-en="Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related entities." data-es="Construcción y presentación de <strong>modelos de NLP de vanguardia para texto clínico oncológico</strong> en el NLP Summit, usando <strong>Spark NLP para reconocimiento de entidades nombradas</strong>.">Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related entities.</p>
                 </div>
               </div>
