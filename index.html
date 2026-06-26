@@ -593,21 +593,14 @@
         height: auto;
         min-height: 340px;
       }
-      .service-card-inner {
-        transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-        transform-style: preserve-3d;
-      }
+
       .service-card.flipped .service-card-inner {
         transform: rotateY(180deg);
       }
       .service-card-front {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
         height: 100%;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
       }
       .service-card-back {
         display: flex;
@@ -776,6 +769,9 @@
 
     /* ── MOBILE OVERRIDES (must come after 1024px to win cascade) ── */
     @media (max-width: 480px) {
+      /* Bigger section titles on mobile */
+      .section-title { font-size: 2.2rem !important; font-weight: 800; }
+      .contact-header .section-title { font-size: 2.2rem !important; }
       /* Project cards: 1 col */
       .projects-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
       /* Hero: full width image, normal section height */
@@ -1053,30 +1049,18 @@
         padding-bottom: 2.4rem;
       }
       .project-card {
-        cursor: pointer;
-        perspective: 1200px;
+        cursor: default;
         min-height: 380px;
         display: flex;
         flex-direction: column;
       }
-      .project-card-inner {
-        flex: 1;
-        position: relative;
-        transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-        transform-style: preserve-3d;
-      }
+
       .project-card.flipped .project-card-inner {
         transform: rotateY(180deg);
       }
       .project-card-front {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        border-radius: 10px;
       }
       .project-card-back {
         display: flex;
@@ -1917,7 +1901,7 @@
             <div class="project-card-inner">
               <div class="project-card-front">
                 <div class="project-thumb">
-                  <img src="images/project_nlp.png" alt="Oncology NLP Models" style="width:90%;height:90%;object-fit:contain;">
+                  <img src="images/project_nlp.png" alt="Oncology NLP Models" style="width:100%;height:100%;object-fit:contain;">
                 </div>
                 <div class="project-body">
                   <p class="project-title" data-en="Oncology NLP Models" data-es="Modelos de NLP en Oncología">Oncology NLP Models</p>
@@ -2027,22 +2011,7 @@
       document.getElementById('hamburger').classList.remove('open');
     }
 
-    function initFlipCards() {
-      document.querySelectorAll('.service-card, .project-card').forEach(card => {
-        card.onclick = null;
-      });
-      if (window.innerWidth <= 480) {
-        document.querySelectorAll('.service-card, .project-card').forEach(card => {
-          card.style.cursor = 'pointer';
-          card.onclick = function() { this.classList.toggle('flipped'); };
-        });
-      }
-    }
-    window.addEventListener('load', initFlipCards);
-    window.addEventListener('resize', function() {
-      document.querySelectorAll('.service-card, .project-card').forEach(c => c.classList.remove('flipped'));
-      initFlipCards();
-    });
+    // Flip cards removed - all content shown on front
 
     function setLang(lang) {
       ['btn-en','btn-es','mob-btn-en','mob-btn-es'].forEach(id => {
