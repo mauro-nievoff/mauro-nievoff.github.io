@@ -1,2057 +1,719 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mauro Nievas Offidani · AI & Data Science for Healthcare</title>
-
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Mauro Nievas Offidani</title>
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='white'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='800' font-size='42' fill='%230073E5'>M</text></svg>">
-
+  <link
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='white'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='800' font-size='42' fill='%230073E5'>M</text></svg>"
+    rel="icon" type="image/svg+xml" />
   <!-- Open Graph -->
-  <meta property="og:title" content="Mauro Nievas Offidani — AI & Data Science for Healthcare" />
-  <meta property="og:description" content="Medical Doctor and Senior Data Scientist specializing in healthcare AI. RAG pipelines, NLP, clinical automations and more." />
-  <meta property="og:image" content="https://mauro-nievoff.github.io/hero_image.png" />
-  <meta property="og:url" content="https://mauro-nievoff.github.io/" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mauro Nievas Offidani — AI & Data Science for Healthcare" />
-  <meta name="twitter:description" content="Medical Doctor and Senior Data Scientist specializing in healthcare AI." />
-  <meta name="twitter:image" content="https://mauro-nievoff.github.io/hero_image.png" />
-
+  <meta content="Mauro Nievas Offidani — AI &amp; Data Science for Healthcare" property="og:title" />
+  <meta
+    content="Medical Doctor and Senior Data Scientist specializing in healthcare AI. RAG pipelines, NLP, clinical automations and more."
+    property="og:description" />
+  <meta content="https://mauro-nievoff.github.io/hero_image.webp" property="og:image" />
+  <meta content="https://mauro-nievoff.github.io/" property="og:url" />
+  <meta content="website" property="og:type" />
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="Mauro Nievas Offidani — AI &amp; Data Science for Healthcare" name="twitter:title" />
+  <meta content="Medical Doctor and Senior Data Scientist specializing in healthcare AI." name="twitter:description" />
+  <meta content="https://mauro-nievoff.github.io/hero_image.webp" name="twitter:image" />
   <!-- Fonts from Google -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400,500,700,800&family=Lato:wght@300,400,700&display=swap" rel="stylesheet" />
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --blue:       #0073E5;
-      --blue-mid:   #6AA7FF;
-      --blue-light: #8CC2FF;
-      --blue-pale:  #E7EFFF;
-      --dark:       #434656;
-      --muted:      #617795;
-      --white:      #FFFFFF;
-    }
-
-    html {
-      overflow-y: scroll;
-      overflow-x: hidden;
-    }
-    body {
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      color: var(--dark);
-      background: var(--white);
-      height: 100%;
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      padding: 3rem 1.5rem;
-    }
-
-    /* ── SECTION 1 · HERO ── */
-    #hero {
-      background: linear-gradient(135deg, #C8D9F5 0%, #E7EFFF 55%, #D5E5FF 100%);
-      text-align: center;
-      gap: 0;
-    }
-
-    .hero-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.1rem;
-      flex: 1;
-      justify-content: center;
-    }
-
-    /* Hero image */
-    .hero-image-wrap {
-      position: relative;
-      width: clamp(260px, 78vw, 860px);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .hero-image-wrap img {
-      width: 100%;
-      display: block;
-      border-radius: 20px;
-    }
-
-
-    /* Name */
-    .hero-name {
-      font-family: 'Roboto', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      font-weight: 800;
-      color: var(--dark);
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-
-    /* Credentials inline — same font, same weight */
-    .hero-credentials-inline {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 800;
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      color: var(--dark);
-      letter-spacing: -0.01em;
-    }
-
-    /* Tagline */
-    .hero-tagline {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-      font-weight: 400;
-      color: var(--dark);
-      max-width: 480px;
-      line-height: 1.5;
-    }
-
-    /* Divider hidden */
-    .hero-divider { display: none; }
-
-    /* Scroll CTA */
-    .scroll-cta {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-
-    .scroll-cta:hover { color: var(--blue); }
-
-    .scroll-cta-text {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-    }
-
-    .scroll-cta-arrow {
-      width: 28px;
-      height: 28px;
-      border: 1.5px solid currentColor;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    .scroll-cta-arrow svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(5px); }
-    }
-
-    /* ── SECTION 2 · WHO AM I ── */
-    #about {
-      background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
-      padding-top: 0;
-      padding-bottom: 0;
-      overflow: hidden;
-      justify-content: flex-start;
-    }
-
-    .whois-inner {
-      display: flex;
-      width: 100%;
-      min-height: 100vh;
-    }
-
-    /* Left column */
-    .whois-left {
-      flex: 0 0 40%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1.5rem 1.5rem 4rem 2rem;
-      border-right: 1px solid var(--blue-pale);
-    }
-
-    .whois-photo { order: 1; }
-    .whois-metrics { order: 2; }
-    .whois-upwork { order: 3; }
-
-    .whois-photo {
-      width: 100%;
-      max-width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .whois-photo img {
-      width: 100%;
-      display: block;
-      border-radius: 16px;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .whois-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
-      width: 100%;
-    }
-
-    .whois-metrics .metric {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0.45rem 0.75rem;
-      aspect-ratio: unset;
-    }
-
-    .whois-metrics .metric-value {
-      font-size: clamp(2rem, 3.5vw, 3rem);
-    }
-
-    .whois-metrics .metric-label {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-    }
-
-    .whois-upwork {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(97,119,149,0.3);
-      padding-bottom: 1px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Right column */
-    .whois-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1.5rem 3rem 4rem 3rem;
-    }
-
-
-    .whois-bio p {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-      color: var(--dark);
-      line-height: 1.8;
-      margin-bottom: 0.75rem;
-    }
-
-    .whois-bio strong {
-      font-weight: 700;
-      color: var(--blue);
-    }
-
-    .whois-bio p:last-child { margin-bottom: 0; }
-
-    .whois-bio-mobile { display: none; }
-
-    /* Tech stack icon grid */
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 0.75rem;
-      width: 100%;
-    }
-
-    .tech-card {
-      background: var(--blue-pale);
-      border: 1px solid rgba(0,115,229,0.08);
-      border-radius: 12px;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1/1;
-      padding: 0.6rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-    }
-
-    .tech-card img {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-    }
-
-    .tech-card-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 800;
-      color: white;
-      letter-spacing: 0.02em;
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    .tech-card span {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--dark);
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    @media (max-width: 860px) {
-      .whois-inner {
-        flex-direction: column;
-        height: auto;
-      }
-      #about {
-        justify-content: flex-start;
-        padding-top: 3.5rem;
-      }
-      .whois-left {
-        flex-direction: column;
-        align-items: center;
-        border-right: none;
-        border-bottom: none;
-        padding: 0;
-        gap: 0.7rem;
-      }
-      .whois-photo { order: 1; }
-      .whois-metrics { order: 2; }
-      .whois-upwork { order: 3; }
-      .whois-photo {
-        width: 100%;
-        max-width: 100%;
-        aspect-ratio: 16 / 7;
-        overflow: hidden;
-        border-radius: 0;
-        margin-bottom: 0.5rem;
-      }
-      .whois-photo img {
-        border-radius: 0;
-      }
-      .whois-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 50% 10%;
-      }
-      .whois-metrics {
-        width: 100%;
-        max-width: 360px;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.3rem;
-        padding: 0 0.75rem;
-        justify-items: center;
-        margin: 0 auto;
-      }
-      .whois-metrics .metric {
-        width: 100%;
-        padding-top: 0.15rem;
-        padding-bottom: 0.15rem;
-      }
-      .whois-upwork {
-        justify-content: center;
-        margin-top: 0.3rem;
-        margin-bottom: 1.25rem;
-      }
-      .whois-content { padding: 0.75rem 1rem 1.5rem; gap: 0.75rem; flex: 0 1 auto; justify-content: flex-start; }
-      .whois-bio-desktop { display: none; }
-      .whois-bio-mobile { display: block; }
-    }
-
-    @media (max-width: 480px) {
-      .whois-metrics .metric-value { font-size: 1.4rem; }
-      .whois-metrics .metric-label { font-size: 0.75rem; }
-      .whois-bio-mobile p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem; }
-      .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-      }
-      .tech-card {
-        width: 100%;
-        height: auto;
-        aspect-ratio: unset;
-        padding: 0.6rem 0.5rem;
-        gap: 0.4rem;
-        border-radius: 10px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-      .tech-card img { width: 28px; height: 28px; flex-shrink: 0; }
-      .tech-card-badge { width: 28px; height: 28px; font-size: 0.55rem; border-radius: 5px; flex-shrink: 0; }
-      .tech-card span { font-size: 1rem; font-weight: 700; line-height: 1.2; text-align: center; }
-    }
-
-    /* ── SECTION 2 · SERVICES ── */
-    #services {
-      background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
-      padding: 1rem 2rem 4rem;
-      justify-content: flex-start;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-eyebrow {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Roboto', sans-serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.2;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 1fr;
-      gap: 1.25rem;
-      width: 100%;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: transparent;
-      border-radius: 16px;
-      cursor: default;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .service-card-inner {
-      position: relative;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    /* Desktop: static card, front only, with description visible */
-    .service-card-front {
-      position: relative;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding-bottom: 0;
-      border-radius: 16px;
-      border: 2px solid rgba(0,115,229,0.22);
-      overflow: hidden;
-      background: var(--white);
-      box-shadow: 0 3px 12px rgba(0,115,229,0.07);
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-
-    .service-card:hover .service-card-front {
-      box-shadow: 0 8px 24px rgba(0, 115, 229, 0.1);
-      transform: translateY(-3px);
-    }
-
-    .service-card-back { display: none !important; }
-
-    .service-card-back .service-desc {
-      color: rgba(255,255,255,0.95);
-      font-size: 0.85rem;
-      line-height: 1.6;
-      padding: 0;
-      display: block;
-    }
-
-    .service-card-front .service-title,
-    .service-card-front .service-desc {
-      padding-left: 0.85rem;
-      padding-right: 0.85rem;
-    }
-
-    .service-image {
-      width: 100%;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .service-image svg {
-      width: 56px;
-      height: 56px;
-      stroke: white;
-      fill: none;
-      opacity: 0.9;
-      stroke-width: 1.75;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .service-title {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #2a2c3e;
-      line-height: 1.3;
-      margin-top: 0.4rem;
-      margin-bottom: 0.25rem;
-      text-align: center;
-      display: block;
-    }
-
-    .service-desc {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 400;
-      color: #3d4f66;
-      line-height: 1.5;
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-
-    @media (max-width: 720px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      #services {
-        padding-top: 4rem;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        padding-bottom: 2.4rem;
-      }
-      .service-card {
-        border-radius: 12px;
-        cursor: default;
-        height: auto;
-      }
-      .service-card-front {
-        position: relative;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-      .service-image {
-        height: 200px;
-        width: 100%;
-      }
-      .service-image svg {
-        width: 40px;
-        height: 40px;
-      }
-      .service-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-top: 0.5rem;
-        margin-bottom: 0.25rem;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        line-height: 1.3;
-        text-align: center;
-        display: block;
-      }
-      .service-desc {
-        font-size: 1rem;
-        padding: 0 0.75rem 0.75rem;
-        line-height: 1.5;
-        text-align: center;
-        display: block;
-      }
-      .service-card-back .service-desc {
-        font-size: 1.3rem !important;
-        font-weight: 600;
-        line-height: 1.6;
-      }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 480px) {
-      .hero-image-wrap {
-        width: 98vw;
-      }
-      .scroll-cta {
-        bottom: 4rem;
-      }
-    }
-
-    /* ── 1024px LANDSCAPE TABLET ── */
-    @media (max-width: 1024px) {
-      /* Global: prevent overflow */
-      section { min-height: auto; padding: 1rem 1.5rem 2rem; }
-
-      /* Navbar */
-      .navbar { padding: 0.75rem 1rem; }
-
-      /* Hero */
-      .hero-image-wrap { width: clamp(180px, 38vw, 380px); }
-      .hero-name { font-size: clamp(1rem, 2.5vw, 1.6rem); }
-      .hero-credentials-inline { font-size: clamp(1rem, 2.5vw, 1.6rem); }
-      .hero-tagline { font-size: clamp(0.8rem, 1.3vw, 1rem); }
-
-      /* About */
-      .whois-inner { min-height: auto; }
-      .whois-left { flex: 0 0 26%; padding: 0.75rem 1rem 1.5rem 1rem; gap: 0.75rem; }
-      .whois-content { padding: 0.75rem 1.5rem 1.5rem; gap: 0.75rem; }
-      .whois-bio p { font-size: 0.8rem; line-height: 1.5; }
-      .whois-metrics { max-width: 100%; }
-      .whois-metrics .metric-value { font-size: 1.1rem; }
-      .whois-metrics .metric-label { font-size: 0.58rem; }
-      .tech-card { width: 72px; height: 72px; }
-      .tech-card span { font-size: 0.62rem; }
-      .tech-card img, .tech-card-badge { width: 28px; height: 28px; }
-      .tech-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 0.4rem; }
-
-      /* Services: 2x3 */
-      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; max-width: 640px; margin: 0 auto; }
-      .service-image { height: 140px; aspect-ratio: unset; }
-      .service-title { font-size: 0.85rem; min-height: 1.8rem; }
-      .service-desc { font-size: 0.72rem; line-height: 1.4; }
-      .service-card-front { padding-bottom: 0.75rem; gap: 0.35rem; }
-
-      /* Projects: 2x2 */
-      .projects-grid { grid-template-columns: repeat(2, 1fr); max-width: 680px; gap: 0.75rem; }
-      #projects .about-inner { max-width: 680px; }
-      .project-thumb { height: 180px; }
-      .project-title { font-size: 0.9rem; }
-      .project-desc { font-size: 0.78rem; line-height: 1.5; }
-      .project-body { padding: 0.75rem 1rem 0.75rem; gap: 0.35rem; }
-
-      /* Section titles */
-      .section-title-wrap { padding-top: 2.5rem; margin-bottom: 0.25rem; }
-      .section-title { font-size: clamp(1.2rem, 3vw, 1.8rem); }
-
-      /* Contact */
-      .contact-inner { padding-top: 2.5rem; gap: 1.5rem; }
-      .contact-header p { font-size: 0.9rem; }
-    }
-
-    /* ── 768px PORTRAIT TABLET ── */
-    @media (max-width: 768px) and (min-width: 481px) {
-      .section-title-wrap { padding-top: 4.5rem; }
-      #about { padding-top: 1rem; }
-      .whois-inner { flex-direction: column; height: auto; }
-      .whois-left {
-        flex: none;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: flex-start;
-        border-right: none;
-        border-bottom: 1px solid var(--blue-pale);
-        padding: 0 0 1rem;
-        gap: 1rem;
-      }
-      .whois-photo {
-        flex: 0 0 40%;
-        max-width: 40%;
-        aspect-ratio: 3 / 4;
-        overflow: hidden;
-      }
-      .whois-photo img { height: 100%; object-fit: cover; object-position: 50% top; }
-      .whois-metrics {
-        flex: 1;
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
-      }
-      .whois-content { padding: 1.5rem 1.5rem 3rem; }
-      /* Tech grid: 4 cols */
-      .tech-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        max-width: 100%;
-      }
-      .whois-content .tech-grid { margin-top: 1rem; }
-      /* Services: 2 cols on tablet */
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      /* Projects: 2x2 */
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-      /* Contact */
-      .contact-inner { padding-top: 4rem; }
-    }
-
-    /* ── MOBILE OVERRIDES (must come after 1024px to win cascade) ── */
-    @media (max-width: 480px) {
-      /* Navbar: restore full height on mobile */
-      .navbar { padding: 1.1rem 1rem !important; }
-      /* Bigger section titles on mobile */
-      .section-title { font-size: 2rem !important; font-weight: 800; }
-      .contact-header .section-title { font-size: 2rem !important; }
-      /* Service card text */
-      .service-title { font-size: 1.3rem !important; font-weight: 700; }
-      .service-desc { font-size: 1.05rem !important; line-height: 1.55 !important; }
-      /* About me bio text */
-      .whois-bio-mobile p { font-size: 1.15rem !important; line-height: 1.65 !important; }
-      .whois-bio p { font-size: 1.15rem !important; line-height: 1.65 !important; }
-      /* Project cards: 1 col */
-      .projects-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
-      /* Hero: full width image, normal section height */
-      section { min-height: 100vh; }
-      .hero-image-wrap { width: 98vw !important; }
-      .hero-name { font-size: clamp(1.6rem, 4vw, 2.6rem) !important; }
-      .hero-credentials-inline { font-size: clamp(1.6rem, 4vw, 2.6rem) !important; }
-      .hero-tagline { font-size: clamp(1.15rem, 2.2vw, 1.45rem) !important; }
-
-      /* Services: FORCE 1 column */
-      .services-grid { grid-template-columns: 1fr !important; }
-
-      /* Tech stack: larger cards */
-      .tech-card { width: 100% !important; height: auto !important; aspect-ratio: unset !important; padding: 0.75rem !important; flex-direction: column !important; align-items: center !important; }
-      .tech-card img { width: 36px !important; height: 36px !important; }
-      .tech-card-badge { width: 36px !important; height: 36px !important; font-size: 0.6rem !important; }
-      .tech-card span { font-size: 1.05rem !important; }
-      .tech-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.6rem !important; }
-    }
-
-    /* ── TABLET 768px OVERRIDES (after 1024px) ── */
-    @media (max-width: 768px) and (min-width: 481px) {
-      /* Hero: reasonable size */
-      .hero-image-wrap { width: clamp(260px, 60vw, 500px) !important; }
-      .hero-name { font-size: clamp(1.4rem, 3.5vw, 2rem) !important; }
-      .hero-tagline { font-size: clamp(1rem, 2vw, 1.2rem) !important; }
-
-      /* Upwork: ensure it's below metrics */
-      .whois-left { flex-direction: column !important; }
-      .whois-photo { order: 1; }
-      .whois-metrics { order: 2; }
-      .whois-upwork { order: 3; margin-top: 0.5rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .scroll-cta-arrow { animation: none; }
-    }
-
-    /* ── SECTION 3 · PROJECTS ── */
-    #projects {
-      background: linear-gradient(135deg, #F0F6FF 0%, #FFFFFF 60%, #E7EFFF 100%);
-      padding: 1rem 3rem 4rem;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    #projects .about-inner {
-      max-width: 960px;
-    }
-
-    .about-inner {
-      width: 100%;
-      max-width: 960px;
-      display: flex;
-      flex-direction: column;
-      gap: 3.5rem;
-    }
-
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-      text-align: center;
-    }
-
-    .metric {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      padding: 1.25rem 0.75rem;
-      background: var(--blue-pale);
-      border-radius: 14px;
-    }
-
-    .metric-value {
-      font-family: 'Roboto', sans-serif;
-      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      font-weight: 700;
-      color: var(--blue);
-      line-height: 1;
-    }
-
-    .metric-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--muted);
-      line-height: 1.3;
-    }
-
-    .about-bio-block p {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-      color: var(--dark);
-      line-height: 1.75;
-      max-width: 720px;
-      margin-bottom: 0.85rem;
-    }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-top: 0.5rem;
-    }
-
-    .skill-chip {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--blue-pale);
-      border: 1px solid rgba(0,115,229,0.12);
-      border-radius: 999px;
-      padding: 0.4rem 0.85rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    .skill-chip img {
-      width: 18px;
-      height: 18px;
-      object-fit: contain;
-    }
-
-    .skill-chip-badge {
-      background: var(--blue);
-      color: var(--white);
-      border-color: transparent;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      width: 100%;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .project-card {
-      background: transparent;
-      border-radius: 16px;
-      cursor: default;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card-inner {
-      position: relative;
-      width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card-front {
-      position: relative;
-      width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background: var(--white);
-      border: 2px solid rgba(0,115,229,0.22);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,115,229,0.07);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .project-card:hover .project-card-front {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0,115,229,0.18);
-      border-color: var(--blue);
-    }
-
-    .project-card-back { display: none !important; }
-
-    .project-thumb {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f8fbff;
-    }
-
-    .project-thumb svg { width: 100%; height: 100%; }
-
-    .project-body {
-      padding: 1rem 1.25rem 1.1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      background: var(--blue-pale);
-      flex: 1;
-    }
-
-    .project-title {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #2a2c3e;
-      line-height: 1.3;
-      text-align: center;
-    }
-
-    .project-desc {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
-      color: #3d4f66;
-      line-height: 1.55;
-      text-align: center;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.4rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding-bottom: 0.5rem;
-    }
-
-    .project-link {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--blue);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(0,115,229,0.25);
-      padding-bottom: 1px;
-      transition: border-color 0.2s;
-    }
-
-    .project-link:hover { border-color: var(--blue); }
-
-    .github-cta { text-align: center; margin-top: 0.5rem; }
-
-    .github-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--dark);
-      text-decoration: none;
-      border: 1.5px solid rgba(67,70,86,0.2);
-      border-radius: 999px;
-      padding: 0.6rem 1.25rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .github-btn:hover { border-color: var(--blue); color: var(--blue); }
-    .github-btn svg { width: 18px; height: 18px; fill: currentColor; }
-
-    @media (max-width: 720px) {
-      .metrics-row { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (max-width: 480px) {
-      .metrics-row { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
-      #projects {
-        padding-top: 4rem;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        padding-bottom: 2.4rem;
-      }
-      .project-card {
-        cursor: default;
-        min-height: 380px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .project-card.flipped .project-card-inner {
-        transform: rotateY(180deg);
-      }
-      .project-card-front {
-        position: relative;
-        width: 100%;
-      }
-      .project-card-back {
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform: rotateY(180deg);
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 0.8rem 0.68rem;
-        border-radius: 10px;
-      }
-      .project-card-back .project-desc {
-        color: white;
-        font-size: 1.1rem;
-        font-weight: 500;
-        line-height: 1.55;
-        flex: none;
-        text-align: center;
-      }
-      .project-desc-front {
-        display: none;
-      }
-      .project-desc {
-        font-size: 0.95rem;
-        line-height: 1.4;
-      }
-      .project-thumb {
-        height: 220px;
-      }
-      .project-body {
-        padding: 0.85rem 1rem 0.85rem;
-        gap: 0.4rem;
-        align-items: center;
-        text-align: center;
-        justify-content: flex-start;
-      }
-      .project-title {
-        font-size: 1.2rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
-      }
-      .project-links {
-        gap: 0.5rem;
-        margin-top: 0.25rem;
-        justify-content: center;
-      }
-      .project-link {
-        font-size: 1rem;
-        font-weight: 700;
-      }
-    }
-
-    /* ── SECTION 4 · CONTACT ── */
-    #contact {
-      background: linear-gradient(135deg, #E7EFFF 0%, #FFFFFF 60%, #F0F6FF 100%);
-      padding: 0 2rem 4rem;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .contact-inner {
-      width: 100%;
-      max-width: 680px;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      padding-top: 3.5rem;
-    }
-
-    .contact-header { text-align: center; }
-
-    .contact-header .section-eyebrow { color: var(--blue); }
-
-    .contact-header .section-title { color: var(--dark); }
-
-    .contact-header p {
-      font-family: 'Lato', sans-serif;
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-top: 0.75rem;
-      line-height: 1.6;
-    }
-
-    /* Action buttons row */
-    .contact-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.4rem;
-      border-radius: 999px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-
-    .contact-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .contact-btn svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    .btn-cal {
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .btn-wa {
-      background: #25D366;
-      color: var(--white);
-    }
-
-    .btn-li {
-      background: #0A66C2;
-      color: var(--white);
-    }
-
-    /* Contact form */
-    .contact-form {
-      background: var(--blue-pale);
-      border: 1px solid rgba(0,115,229,0.15);
-      border-radius: 16px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .form-group label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      background: var(--white);
-      border: 1px solid rgba(0,115,229,0.2);
-      border-radius: 8px;
-      padding: 0.65rem 0.9rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
-      color: var(--dark);
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: var(--muted); opacity: 0.7; }
-
-    .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--blue); outline: none; }
-
-    .form-group textarea { resize: vertical; min-height: 100px; }
-
-    .form-submit {
-      background: var(--blue);
-      color: var(--white);
-      border: none;
-      border-radius: 999px;
-      padding: 0.75rem 1.5rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      align-self: flex-end;
-      transition: opacity 0.2s;
-    }
-
-    .form-submit:hover { opacity: 0.85; }
-
-    /* Share + footer */
-    .back-to-top {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--muted);
-      transition: color 0.2s;
-      margin: -0.5rem 0 0.5rem;
-    }
-
-    .back-to-top:hover { color: var(--blue); }
-
-    .back-to-top .scroll-cta-arrow {
-      width: 26px;
-      height: 26px;
-      border: 1.5px solid currentColor;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .back-to-top .scroll-cta-arrow svg {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .back-to-top .scroll-cta-text {
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    .contact-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(0,115,229,0.1);
-    }
-
-    .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.45);
-      background: none;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 999px;
-      padding: 0.45rem 1rem;
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .share-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
-
-    .share-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-    .contact-copy {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .share-toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: var(--blue);
-      color: white;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.82rem;
-      padding: 0.55rem 1.25rem;
-      border-radius: 999px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 100;
-    }
-
-    .share-toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    @media (max-width: 540px) {
-      .form-row { grid-template-columns: 1fr; }
-      .contact-actions { flex-direction: column; align-items: stretch; }
-      .contact-btn { justify-content: center; }
-      #contact { padding: 4rem 1.25rem; }
-    }
-    /* ── NAV BAR ── */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.4rem 1.5rem;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,115,229,0.08);
-    }
-
-    .navbar-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .navbar-link {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--dark);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      transition: color 0.2s;
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .navbar-link:hover { color: var(--blue); }
-
-    .navbar-link.active { color: var(--blue); }
-
-    .navbar-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--blue);
-      border-radius: 2px;
-    }
-
-    @media (max-width: 720px) {
-      .navbar { padding: 0.7rem 1rem; }
-      .navbar-links { gap: 1.1rem; }
-      .navbar-link { font-size: 0.7rem; }
-    }
-
-    @media (max-width: 420px) {
-      .navbar-links { gap: 0.7rem; }
-      .navbar-link { font-size: 0.62rem; }
-    }
-
-
-
-    /* ── SECTION TITLE HEADERS ── */
-    .section-title-wrap {
-      text-align: center;
-      width: 100%;
-      padding-top: 3.5rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-title-wrap .section-title {
-      display: inline-block;
-    }
-
-    .logo-short { display: none; }
-    @media (max-width: 768px) {
-      .logo-full { display: none; }
-      .logo-short { display: inline; }
-    }
-
-    .navbar-logo {
-      position: absolute;
-      left: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--blue);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      transition: opacity 0.2s;
-    }
-    .navbar-logo:hover { opacity: 0.75; }
-
-    @media (max-width: 640px) {
-      .navbar-logo { font-size: 0.75rem; }
-      .navbar-logo::after { content: ""; }
-    }
-
-
-
-
-    /* ── HAMBURGER MENU ── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-      z-index: 1001;
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--dark);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(10px);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .mobile-menu.open { display: flex; }
-
-    .mobile-menu a {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dark);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .mobile-menu a:hover { color: var(--blue); }
-
-    @media (max-width: 640px) {
-      .navbar-links { display: none; }
-      .hamburger { display: flex; }
-      #lang-toggle-desktop { display: none; }
-    }
-
-    /* ── BACK TO TOP FIX ── */
-    .back-to-top .scroll-cta-text {
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-
-    /* ── LANGUAGE TOGGLE ── */
-    .lang-toggle {
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .lang-btn {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--muted);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      transition: color 0.2s;
-      letter-spacing: 0.04em;
-    }
-
-    .lang-btn.active {
-      color: var(--blue);
-      background: var(--blue-pale);
-    }
-
-    .lang-btn:hover { color: var(--blue); }
-
-    .lang-divider {
-      color: var(--muted);
-      font-size: 0.75rem;
-      opacity: 0.4;
-    }
-
-    @media (max-width: 420px) {
-      .lang-toggle { margin-left: 0.5rem; }
-      .lang-btn { font-size: 0.65rem; padding: 0.15rem 0.3rem; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400,500,700,800&amp;family=Lato:wght@300,400,700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
 </head>
+
+
 <body>
 
+
+  
   <!-- NAV BAR -->
   <nav class="navbar">
-    <a class="navbar-logo" href="#hero"><span class="logo-full">Mauro Nievas Offidani</span><span class="logo-short">Mauro</span></a>
+    <a class="navbar-logo" href="#hero"><span class="logo-full">Mauro Nievas Offidani</span><span
+        class="logo-short">Mauro</span></a>
     <div class="navbar-links">
-      <a class="navbar-link" href="#hero" data-en="Home" data-es="Inicio">Home</a>
-      <a class="navbar-link" href="#about" data-en="About Me" data-es="Sobre mí">About Me</a>
-      <a class="navbar-link" href="#services" data-en="My Services" data-es="Mis Servicios">My Services</a>
-      <a class="navbar-link" href="#projects" data-en="My Projects" data-es="Mis Proyectos">My Projects</a>
-      <a class="navbar-link" href="#contact" data-en="Contact Me" data-es="Contacto">Contact Me</a>
+      <a class="navbar-link" data-en="Home" data-es="Inicio" href="#hero">Home</a>
+      <a class="navbar-link" data-en="About Me" data-es="Sobre mí" href="#about">About Me</a>
+      <a class="navbar-link" data-en="My Services" data-es="Mis Servicios" href="#services">My Services</a>
+      <a class="navbar-link" data-en="My Projects" data-es="Mis Proyectos" href="#projects">My Projects</a>
+      <a class="navbar-link" data-en="Contact Me" data-es="Contacto" href="#contact">Contact Me</a>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Menu" class="hamburger" data-menu-toggle="true"
+      id="hamburger">
       <span></span><span></span><span></span>
     </button>
     <div class="lang-toggle" id="lang-toggle-desktop">
-      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" data-lang="en" id="btn-en">EN</button>
       <span class="lang-divider">|</span>
-      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" data-lang="es" id="btn-es">ES</button>
     </div>
   </nav>
-
   <!-- Mobile menu overlay -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#hero" onclick="closeMenu()" data-en="Home" data-es="Inicio">Home</a>
-    <a href="#about" onclick="closeMenu()" data-en="About Me" data-es="Sobre mí">About Me</a>
-    <a href="#services" onclick="closeMenu()" data-en="My Services" data-es="Mis Servicios">My Services</a>
-    <a href="#projects" onclick="closeMenu()" data-en="My Projects" data-es="Mis Proyectos">My Projects</a>
-    <a href="#contact" onclick="closeMenu()" data-en="Contact Me" data-es="Contacto">Contact Me</a>
-    <div style="display:flex; gap:1rem; margin-top:1rem;">
-      <button class="lang-btn active" id="mob-btn-en" onclick="setLang('en')" style="font-size:1rem;">EN</button>
-      <span class="lang-divider" style="font-size:1rem; opacity:0.4;">|</span>
-      <button class="lang-btn" id="mob-btn-es" onclick="setLang('es')" style="font-size:1rem;">ES</button>
+    <a data-en="Home" data-es="Inicio" data-menu-close="true" href="#hero">Home</a>
+    <a data-en="About Me" data-es="Sobre mí" data-menu-close="true" href="#about">About Me</a>
+    <a data-en="My Services" data-es="Mis Servicios" data-menu-close="true" href="#services">My Services</a>
+    <a data-en="My Projects" data-es="Mis Proyectos" data-menu-close="true" href="#projects">My Projects</a>
+    <a data-en="Contact Me" data-es="Contacto" data-menu-close="true" href="#contact">Contact Me</a>
+    <div class="mobile-lang-toggle">
+      <button class="lang-btn active" data-lang="en" id="mob-btn-en">EN</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="es" id="mob-btn-es">ES</button>
     </div>
   </div>
 
 
+
   <!-- SECTION 1 · HERO -->
   <section id="hero">
+    <div aria-hidden="true" class="hero-bg"></div>
     <div class="hero-inner">
-      <div class="hero-image-wrap">
-        <img src="hero_image.png" alt="Mauro Nievas Offidani — AI & Data Science for Healthcare" />
+      <div class="hero-copy">
+        <h1 class="hero-name">
+          Mauro Nievas Offidani<br />
+          MD · PhD
+        </h1>
+        <div class="hero-divider"></div>
+        <p class="hero-tagline" data-en="AI &amp; Data Science for Healthcare"
+          data-es="IA y Ciencia de Datos para la Salud">
+          AI &amp; Data Science for Healthcare
+        </p>
+        <p class="hero-description"
+          data-en="Applying artificial intelligence and data science to transform information into knowledge and improve medical research and healthcare."
+          data-es="Aplicando inteligencia artificial y ciencia de datos para transformar información en conocimiento y mejorar la investigación y la atención médica.">
+          Applying artificial intelligence and data science to transform information into knowledge and improve medical
+          research and healthcare.
+        </p>
       </div>
-      <h1 class="hero-name">Mauro Nievas Offidani<span class="hero-credentials-inline">, MD, PhD</span></h1>
-      <p class="hero-tagline" data-en="AI &amp; Data Science for Healthcare" data-es="IA y Ciencia de Datos para la Salud">AI &amp; Data Science for Healthcare</p>
+      <div aria-hidden="true" class="hero-visual">
+        <div class="hero-image-card">
+          <img alt="" decoding="async" fetchpriority="high" src="hero-image.webp" />
+        </div>
+      </div>
     </div>
-
   </section>
 
-  <!-- SECTION 2 · WHO AM I -->
-  <section id="about">
-    <div class="section-title-wrap"><h2 class="section-title" data-en="About Me" data-es="Sobre mí">About Me</h2></div>
-    <div class="whois-inner">
 
-      <!-- Left: photo + metrics -->
-      <div class="whois-left">
-        <div class="whois-photo">
-          <img src="profile_photo.jpg" alt="Mauro Nievas Offidani" />
+
+  <!-- SECTION 2 · ABOUT ME -->
+  <section >
+    <div aria-hidden="true" class="about-bg"></div>
+    <div class="about-inner">
+      <div class="about-header">
+        <h2 class="about-title" data-en="About Me" data-es="Sobre mí" id="about">About Me</h2>
+        <div class="about-title-line"></div>
+      </div>
+      <div class="about-main">
+        <div class="about-photo-card">
+          <img alt="Mauro Nievas Offidani" decoding="async" loading="lazy" src="profile_photo.webp" />
+          <div class="about-photo-badge">
+            <span class="about-badge-icon">
+              <i data-lucide="shield-check"></i>
+            </span>
+            <span>
+              <strong>Senior Data Scientist</strong>
+              <small>Healthcare AI</small>
+            </span>
+          </div>
         </div>
-        <div class="whois-metrics">
-          <div class="metric">
+        <div class="about-content">
+          <div class="about-bio">
+            <p data-en="Hi! I'm Mauro, a &lt;strong>Medical Doctor and Senior Data Scientist&lt;/strong> working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production."
+              data-es="¡Hola! Soy Mauro, &lt;strong>Médico y Data Scientist Senior&lt;/strong> trabajando en la intersección entre la salud y la inteligencia artificial. Combino un profundo conocimiento médico con desarrollo hands-on de IA y ciencia de datos, desde la investigación hasta la producción.">
+              Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of
+              healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development —
+              from research to production.
+            </p>
+            <p data-en="My background is &lt;strong>academic-solid and industry-tested&lt;/strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology &amp; Health Policy, and I've spent &lt;strong>7+ years&lt;/strong> delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant."
+              data-es="Mi trayectoria es &lt;strong>sólida académicamente y probada en la industria&lt;/strong>: tengo un Doctorado en Imágenes Médicas y una Maestría en Epidemiología y Política de Salud, y llevo más de &lt;strong>7 años&lt;/strong> entregando proyectos end-to-end en NLP, visión computacional, pipelines RAG y automatizaciones clínicas, como colaborador individual, líder de equipo y consultor.">
+              My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and
+              an MSc in Epidemiology &amp; Health Policy, and I've spent <strong>7+ years</strong> delivering end-to-end
+              projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor,
+              team lead, and consultant.
+            </p>
+            <p data-en="I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter."
+              data-es="Me atraen los problemas complejos y de alto impacto donde la expertise médica y la profundidad técnica son igualmente importantes.">
+              I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="about-metrics-panel">
+        <div class="about-metric">
+          <span class="metric-icon">
+            <i data-lucide="trending-up"></i>
+          </span>
+          <div class="metric-content">
             <span class="metric-value">7+</span>
-            <span class="metric-label" data-en="Years of experience" data-es="Años de experiencia">Years of experience</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">100%</span>
-            <span class="metric-label" data-en="Job Success" data-es="Éxito en trabajos">Job Success</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value" data-en="4,000+" data-es="4.000+">4,000+</span>
-            <span class="metric-label" data-en="Hours logged" data-es="Horas registradas">Hours logged</span>
+            <span class="metric-label" data-en="Years of experience" data-es="Años de experiencia">
+              Years of experience
+            </span>
           </div>
         </div>
-        <a class="whois-upwork" href="https://www.upwork.com/freelancers/~015df5a11ddda9bd9c" target="_blank">
-          <img src="logos/upwork-roundedsquare-1.svg" alt="Upwork" style="height:18px; vertical-align:middle;"><span data-en="Verified on Upwork ↗" data-es="Verificado en Upwork ↗">Verified on Upwork ↗</span>
+        <div class="about-metric">
+          <span class="metric-icon">
+            <i data-lucide="badge-check"></i>
+          </span>
+          <div class="metric-content">
+            <span class="metric-value">100%</span>
+            <span class="metric-label" data-en="Job Success" data-es="Éxito en trabajos">
+              Job Success
+            </span>
+          </div>
+        </div>
+        <div class="about-metric">
+          <span class="metric-icon">
+            <i data-lucide="clock-3"></i>
+          </span>
+          <div class="metric-content">
+            <span class="metric-value" data-en="4,000+" data-es="4.000+">
+              4,000+
+            </span>
+            <span class="metric-label" data-en="Hours logged" data-es="Horas registradas">
+              Hours logged
+            </span>
+          </div>
+        </div>
+        <a class="about-upwork" href="https://www.upwork.com/freelancers/~015df5a11ddda9bd9c" rel="noopener noreferrer"
+          target="_blank">
+          <img alt="Upwork" decoding="async" loading="lazy" src="logos/upwork-roundedsquare-1.svg" />
+          <span data-en="Verified on Upwork ↗" data-es="Verificado en Upwork ↗">
+            Verified on Upwork ↗
+          </span>
         </a>
       </div>
-
-      <!-- Right: bio + tech stack -->
-      <div class="whois-content">
-        <div class="whois-bio whois-bio-desktop">
-          <p data-en="Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production." data-es="¡Hola! Soy Mauro, <strong>Médico y Data Scientist Senior</strong> trabajando en la intersección entre la salud y la inteligencia artificial. Combino un profundo conocimiento médico con desarrollo hands-on de IA y ciencia de datos, desde la investigación hasta la producción.">Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. I combine deep medical domain knowledge with hands-on AI and data science development — from research to production.</p>
-          <p data-en="My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology &amp; Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant." data-es="Mi trayectoria es <strong>sólida académicamente y probada en la industria</strong>: tengo un Doctorado en Imágenes Médicas y una Maestría en Epidemiología y Política de Salud, con más de 7 años entregando proyectos end-to-end en NLP, visión computacional, pipelines RAG y automatizaciones clínicas, como colaborador individual, líder de equipo y consultor.">My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects across NLP, computer vision, RAG pipelines, and clinical automations — as individual contributor, team lead, and consultant.</p>
-          <p data-en="I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter. This is <strong>my tech stack</strong>:" data-es="Me atraen los problemas complejos y de alto impacto donde la expertise médica y la profundidad técnica son igualmente importantes. Este es <strong>mi stack tecnológico</strong>:">I'm drawn to complex, high-stakes problems where medical expertise and technical depth both matter. This is <strong>my tech stack</strong>:</p>
+      <div class="about-tech-section">
+        <div class="about-tech-header">
+          <span class="about-tech-icon">
+            <i data-lucide="code-2"></i>
+          </span>
+          <h3 data-en="Tech Stack" data-es="Stack tecnológico">Tech Stack</h3>
+          <div class="about-tech-line"></div>
+          <p data-en="A curated set of technologies I use to build AI-powered healthcare solutions and data-driven applications."
+            data-es="Un conjunto curado de tecnologías que uso para construir soluciones de salud impulsadas por IA y aplicaciones basadas en datos.">
+            A curated set of technologies I use to build<br />
+            AI-powered healthcare solutions and data-driven applications.
+          </p>
         </div>
-        <div class="whois-bio whois-bio-mobile">
-          <p data-en="Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects. This is <strong>my tech stack</strong>:" data-es="¡Hola! Soy Mauro, <strong>Médico y Data Scientist Senior</strong>. Mi trayectoria es <strong>sólida académicamente y probada en la industria</strong>: Doctorado en Imágenes Médicas, Maestría en Epidemiología, y más de 7 años en proyectos end-to-end. Este es <strong>mi stack tecnológico</strong>:">Hi! I'm Mauro, a <strong>Medical Doctor and Senior Data Scientist</strong> working at the intersection of healthcare and AI. My background is <strong>academic-solid and industry-tested</strong>: I hold a PhD in Medical Imaging and an MSc in Epidemiology & Health Policy, and I've spent 7+ years delivering end-to-end projects.<br><br>This is <strong>my tech stack</strong>:</p>
-        </div>
-
-        <div>
+        <div class="about-tech-panel">
           <div class="tech-grid">
-            <div class="tech-card"><img src="logos/python.png" alt="Python"><span>Python</span></div>
-            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud"><span>Google Cloud</span></div>
-            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub"><span>GitHub</span></div>
-            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></div>
-            <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/neo4j/neo4j-original.svg" alt="Neo4j"><span>Neo4j</span></div>
-            <div class="tech-card"><img src="logos/langchain.webp" alt="LangChain"><span>LangChain</span></div>
-            <div class="tech-card"><img src="logos/langgraph.png" alt="LangGraph"><span>LangGraph</span></div>
-            <div class="tech-card"><img src="logos/n8n.webp" alt="N8N"><span>N8N</span></div>
-            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI"><span>Power BI</span></div>
-            <div class="tech-card"><img src="logos/huggingface.svg" alt="Hugging Face"><span>HuggingFace</span></div>
-            <div class="tech-card"><img src="logos/bigquery.webp" alt="BigQuery"><span>BigQuery</span></div>
-            <div class="tech-card"><img src="logos/vertexai.png" alt="Vertex AI"><span>Vertex AI</span></div>
-            <div class="tech-card"><img src="logos/fhir.png" alt="FHIR"><span>FHIR</span></div>
-            <div class="tech-card"><img src="logos/hl7.png" alt="HL7"><span>HL7</span></div>
-            <div class="tech-card"><img src="logos/snomedct.jpg" alt="SNOMED CT" style="border-radius:6px;"><span>SNOMED CT</span></div>
-            <div class="tech-card"><img src="logos/dicom.png" alt="DICOM"><span>DICOM</span></div>
+            <div class="tech-card">
+              <img alt="Python" decoding="async" loading="lazy" src="logos/python.webp" />
+              <span>Python</span>
+            </div>
+            <div class="tech-card">
+              <img alt="FastAPI" decoding="async" loading="lazy"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" />
+              <span>FastAPI</span>
+            </div>
+            <div class="tech-card">
+              <img alt="Google Cloud" decoding="async" loading="lazy"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" />
+              <span>Google Cloud</span>
+            </div>
+            <div class="tech-card">
+              <img alt="GitHub" decoding="async" loading="lazy"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
+              <span>GitHub</span>
+            </div>
+            <div class="tech-card">
+              <img alt="LangChain" decoding="async" loading="lazy" src="logos/langchain.webp" />
+              <span>LangChain</span>
+            </div>
+            <div class="tech-card">
+              <img alt="LangGraph" decoding="async" loading="lazy" src="logos/langgraph.webp" />
+              <span>LangGraph</span>
+            </div>
+            <div class="tech-card">
+              <img alt="Neo4j" decoding="async" loading="lazy"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/neo4j/neo4j-original.svg" />
+              <span>Neo4j</span>
+            </div>
+            <div class="tech-card">
+              <img alt="N8N" decoding="async" loading="lazy" src="logos/n8n.webp" />
+              <span>N8N</span>
+            </div>
+            <div class="tech-card">
+              <img alt="Vertex AI" decoding="async" loading="lazy" src="logos/vertexai.webp" />
+              <span>Vertex AI</span>
+            </div>
+            <div class="tech-card">
+              <img alt="BigQuery" decoding="async" loading="lazy" src="logos/bigquery.webp" />
+              <span>BigQuery</span>
+            </div>
+            <div class="tech-card">
+              <img alt="Power BI" decoding="async" loading="lazy"
+                src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" />
+              <span>Power BI</span>
+            </div>
+            <div class="tech-card">
+              <img alt="Hugging Face" decoding="async" loading="lazy" src="logos/huggingface.svg" />
+              <span>HuggingFace</span>
+            </div>
+            <div class="tech-card">
+              <img alt="FHIR" decoding="async" loading="lazy" src="logos/fhir.webp" />
+              <span>FHIR</span>
+            </div>
+            <div class="tech-card">
+              <img alt="HL7" decoding="async" loading="lazy" src="logos/hl7.webp" />
+              <span>HL7</span>
+            </div>
+            <div class="tech-card">
+              <img alt="SNOMED CT" decoding="async" loading="lazy" src="logos/snomedct.webp" />
+              <span>SNOMED CT</span>
+            </div>
+            <div class="tech-card">
+              <img alt="DICOM" decoding="async" loading="lazy" src="logos/dicom.webp" />
+              <span>DICOM</span>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
-
   </section>
 
-  <!-- SECTION 2 · SERVICES -->
-  <section id="services">
-    <div class="section-title-wrap"><h2 class="section-title" data-en="My Services" data-es="Mis Servicios">My Services</h2></div>
-    <div class="services-grid">
 
+
+  <!-- SECTION 3 · SERVICES -->
+  <section >
+    <div class="section-title-wrap">
+      <h2 class="section-title" data-en="My Services" data-es="Mis Servicios" id="services">My Services</h2>
+    </div>
+    <div class="services-grid">
       <!-- 1 -->
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service-end-to-end.png" alt="End-to-End AI Projects" style="width: 95%; height: 95%; object-fit: contain;">
+            <div class="service-image">
+              <img alt="End-to-End AI Projects" class="service-img" decoding="async" loading="lazy"
+                src="images/service-end-to-end.webp" />
             </div>
-            <p class="service-title" data-en="End-to-End AI Projects" data-es="Proyectos de IA end-to-end">End-to-End AI Projects</p>
-            <p class="service-desc service-desc-front" data-en="From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments." data-es="Desde el diseño hasta la implementación: pipelines RAG, sistemas de NLP, modelos de imágenes médicas y otros, construidos para entornos clínicos reales.">From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments.</p>
+            <p class="service-title" data-en="End-to-End AI Projects" data-es="Proyectos de IA end-to-end">End-to-End AI
+              Projects</p>
+            <p class="service-desc service-desc-front"
+              data-en="From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments."
+              data-es="Desde el diseño hasta la implementación: pipelines RAG, sistemas de NLP, modelos de imágenes médicas y otros, construidos para entornos clínicos reales.">
+              From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real
+              clinical environments.</p>
           </div>
-          <div class="service-card-back" style="background: linear-gradient(135deg, #6AA7FF 0%, #0073E5 100%);">
-            <p class="service-desc" data-en="From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments." data-es="Desde el diseño hasta la implementación: pipelines RAG, sistemas de NLP, modelos de imágenes médicas y otros, construidos para entornos clínicos reales.">From scoping to deployment: RAG pipelines, NLP systems, medical imaging models and more, built for real clinical environments.</p>
-          </div>
+
         </div>
       </div>
-
       <!-- 2 -->
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service-strategy.png" alt="AI Strategy & Consulting" style="width: 95%; height: 95%; object-fit: contain;">
+            <div class="service-image">
+              <img alt="AI Strategy &amp; Consulting" class="service-img" decoding="async" loading="lazy"
+                src="images/service-strategy.webp" />
             </div>
-            <p class="service-title" data-en="AI Strategy & Consulting" data-es="Estrategia y Consultoría">AI Strategy & Consulting</p>
-            <p class="service-desc service-desc-front" data-en="Helping healthcare organizations identify where AI creates value and how to implement it responsibly." data-es="Ayudo a organizaciones de salud a identificar dónde la IA crea valor y cómo implementarla de forma responsable.">Helping healthcare organizations identify where AI creates value and how to implement it responsibly.</p>
+            <p class="service-title" data-en="AI Strategy &amp; Consulting" data-es="Estrategia y Consultoría">AI
+              Strategy &amp; Consulting</p>
+            <p class="service-desc service-desc-front"
+              data-en="Helping healthcare organizations identify where AI creates value and how to implement it responsibly."
+              data-es="Ayudo a organizaciones de salud a identificar dónde la IA crea valor y cómo implementarla de forma responsable.">
+              Helping healthcare organizations identify where AI creates value and how to implement it responsibly.</p>
           </div>
-          <div class="service-card-back" style="background: linear-gradient(135deg, #8CC2FF 0%, #6AA7FF 100%);">
-            <p class="service-desc" data-en="Helping healthcare organizations identify where AI creates value and how to implement it responsibly." data-es="Ayudo a organizaciones de salud a identificar dónde la IA crea valor y cómo implementarla de forma responsable.">Helping healthcare organizations identify where AI creates value and how to implement it responsibly.</p>
-          </div>
+
         </div>
       </div>
-
       <!-- 3 -->
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service-automations.png" alt="Clinical Automations" style="width: 95%; height: 95%; object-fit: contain;">
+            <div class="service-image">
+              <img alt="Clinical Automations" class="service-img" decoding="async" loading="lazy"
+                src="images/service-automations.webp" />
             </div>
-            <p class="service-title" data-en="Clinical Automations" data-es="Automatizaciones Clínicas">Clinical Automations</p>
-            <p class="service-desc service-desc-front" data-en="Streamlining repetitive clinical and administrative workflows using AI agents and automation tools." data-es="Optimización de flujos de trabajo clínicos y administrativos repetitivos mediante agentes de IA y herramientas de automatización.">Streamlining repetitive clinical and administrative workflows using AI agents and automation tools.</p>
+            <p class="service-title" data-en="Clinical Automations" data-es="Automatizaciones Clínicas">Clinical
+              Automations</p>
+            <p class="service-desc service-desc-front"
+              data-en="Streamlining repetitive clinical and administrative workflows using AI agents and automation tools."
+              data-es="Optimización de flujos de trabajo clínicos y administrativos repetitivos mediante agentes de IA y herramientas de automatización.">
+              Streamlining repetitive clinical and administrative workflows using AI agents and automation tools.</p>
           </div>
-          <div class="service-card-back" style="background: linear-gradient(135deg, #0073E5 0%, #434656 100%);">
-            <p class="service-desc" data-en="Streamlining repetitive clinical and administrative workflows using AI agents and automation tools." data-es="Optimización de flujos de trabajo clínicos y administrativos repetitivos mediante agentes de IA y herramientas de automatización.">Streamlining repetitive clinical and administrative workflows using AI agents and automation tools.</p>
-          </div>
+
         </div>
       </div>
-
       <!-- 4 -->
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service_database.png" alt="Medical Database Design & Interoperability" style="width: 95%; height: 95%; object-fit: contain;">
+            <div class="service-image">
+              <img alt="Medical Database Design &amp; Interoperability" class="service-img" decoding="async"
+                loading="lazy" src="images/service_database.webp" />
             </div>
-            <p class="service-title" data-en="Medical Database Design & Interoperability" data-es="Diseño de Bases de Datos Médicas e Interoperabilidad">Medical Database Design & Interoperability</p>
-            <p class="service-desc service-desc-front" data-en="Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards." data-es="Diseño de bases de datos clínicas estructuradas e integración de estándares de interoperabilidad como FHIR, HL7 y SNOMED CT.">Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards.</p>
+            <p class="service-title" data-en="Medical Database Design &amp; Interoperability"
+              data-es="Diseño de Bases de Datos Médicas e Interoperabilidad">Medical Database Design &amp;
+              Interoperability</p>
+            <p class="service-desc service-desc-front"
+              data-en="Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards."
+              data-es="Diseño de bases de datos clínicas estructuradas e integración de estándares de interoperabilidad como FHIR, HL7 y SNOMED CT.">
+              Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT
+              standards.</p>
           </div>
-          <div class="service-card-back" style="background: linear-gradient(135deg, #6AA7FF 0%, #434656 100%);">
-            <p class="service-desc" data-en="Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards." data-es="Diseño de bases de datos clínicas estructuradas e integración de estándares de interoperabilidad como FHIR, HL7 y SNOMED CT.">Designing structured clinical databases and enabling data exchange using FHIR, HL7, and SNOMED CT standards.</p>
-          </div>
+
         </div>
       </div>
-
       <!-- 5 -->
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service_research.png" alt="Research & Development" style="width: 95%; height: 95%; object-fit: contain;">
+            <div class="service-image">
+              <img alt="Research &amp; Development" class="service-img" decoding="async" loading="lazy"
+                src="images/service_research.webp" />
             </div>
-            <p class="service-title" data-en="Research & Development" data-es="Investigación y Desarrollo">Research & Development</p>
-            <p class="service-desc service-desc-front" data-en="Collaborating on applied research projects at the intersection of medicine, data science, and AI." data-es="Colaboración en proyectos de investigación aplicada en la intersección de la medicina, la ciencia de datos y la IA.">Collaborating on applied research projects at the intersection of medicine, data science, and AI.</p>
+            <p class="service-title" data-en="Research &amp; Development" data-es="Investigación y Desarrollo">Research
+              &amp; Development</p>
+            <p class="service-desc service-desc-front"
+              data-en="Collaborating on applied research projects at the intersection of medicine, data science, and AI."
+              data-es="Colaboración en proyectos de investigación aplicada en la intersección de la medicina, la ciencia de datos y la IA.">
+              Collaborating on applied research projects at the intersection of medicine, data science, and AI.</p>
           </div>
-          <div class="service-card-back" style="background: linear-gradient(135deg, #8CC2FF 0%, #0073E5 100%);">
-            <p class="service-desc" data-en="Collaborating on applied research projects at the intersection of medicine, data science, and AI." data-es="Colaboración en proyectos de investigación aplicada en la intersección de la medicina, la ciencia de datos y la IA.">Collaborating on applied research projects at the intersection of medicine, data science, and AI.</p>
-          </div>
+
         </div>
       </div>
-
       <!-- 6 -->
       <div class="service-card">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-image" style="background: var(--blue-pale);">
-              <img src="images/service_visualization.png" alt="Clinical Data Analysis & Visualization" style="width: 95%; height: 95%; object-fit: contain;">
+            <div class="service-image">
+              <img alt="Clinical Data Analysis &amp; Visualization" class="service-img" decoding="async" loading="lazy"
+                src="images/service_visualization.webp" />
             </div>
-            <p class="service-title" data-en="Clinical Data Analysis & Visualization" data-es="Análisis y Visualización de Datos Clínicos">Clinical Data Analysis & Visualization</p>
-            <p class="service-desc service-desc-front" data-en="Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling." data-es="Transformación de conjuntos de datos clínicos complejos en información clara y accionable, mediante análisis riguroso y visualización efectiva.">Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling.</p>
+            <p class="service-title" data-en="Clinical Data Analysis &amp; Visualization"
+              data-es="Análisis y Visualización de Datos Clínicos">Clinical Data Analysis &amp; Visualization</p>
+            <p class="service-desc service-desc-front"
+              data-en="Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling."
+              data-es="Transformación de conjuntos de datos clínicos complejos en información clara y accionable, mediante análisis riguroso y visualización efectiva.">
+              Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual
+              storytelling.</p>
           </div>
-          <div class="service-card-back" style="background: linear-gradient(135deg, #434656 0%, #0073E5 100%);">
-            <p class="service-desc" data-en="Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling." data-es="Transformación de conjuntos de datos clínicos complejos en información clara y accionable, mediante análisis riguroso y visualización efectiva.">Turning complex clinical datasets into clear, actionable insights through rigorous analysis and visual storytelling.</p>
-          </div>
+
         </div>
       </div>
-
     </div>
-
   </section>
 
-  <!-- SECTION 3 · ABOUT + PROJECTS -->
-  <section id="projects">
-    <div class="section-title-wrap"><h2 class="section-title" data-en="My Projects" data-es="Mis Proyectos">My Projects</h2></div>
-    <div class="about-inner">
 
+  <!-- SECTION 4 · PROJECTS -->
+  <section >
+    <div class="section-title-wrap">
+      <h2 class="section-title" data-en="My Projects" data-es="Mis Proyectos" id="projects">My Projects</h2>
+    </div>
+    <div class="about-inner">
       <!-- Projects -->
       <div>
         <div class="projects-grid">
-
           <!-- 1: MultiCaRe -->
           <div class="project-card">
             <div class="project-card-inner">
               <div class="project-card-front">
                 <div class="project-thumb">
-                  <img src="images/project_multicare.png" alt="MultiCaRe Dataset" style="width:121%;height:121%;object-fit:contain;">
+                  <img alt="MultiCaRe Dataset" class="project-img-zoom" decoding="async" loading="lazy"
+                    src="images/project_multicare.webp" />
                 </div>
                 <div class="project-body">
                   <p class="project-title" data-en="MultiCaRe Dataset" data-es="Dataset MultiCaRe">MultiCaRe Dataset</p>
                   <div class="project-links">
-                    <a class="project-link" href="https://doi.org/10.3390/data10080123" target="_blank">Read paper</a>
-                    <a class="project-link" href="https://github.com/mauro-nievoff/MultiCaRe_Dataset" target="_blank">GitHub</a>
-                    <a class="project-link" href="https://zenodo.org/records/20416562" target="_blank">Zenodo</a>
+                    <a class="project-link" href="https://doi.org/10.3390/data10080123" rel="noopener noreferrer"
+                      target="_blank">Read paper</a>
+                    <a class="project-link" href="https://github.com/mauro-nievoff/MultiCaRe_Dataset"
+                      rel="noopener noreferrer" target="_blank">GitHub</a>
+                    <a class="project-link" href="https://zenodo.org/records/20416562" rel="noopener noreferrer"
+                      target="_blank">Zenodo</a>
                   </div>
-                  <p class="project-desc" data-en="An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>, built from PubMed Central case reports to advance clinical AI research." data-es="Un <strong>dataset multimodal de código abierto con más de 100K casos clínicos y 140K imágenes médicas</strong>, construido a partir de reportes de casos de PubMed Central para contribuir con la investigación en IA clínica.">An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>, built from PubMed Central case reports to advance clinical AI research.</p>
+                  <p class="project-desc"
+                    data-en="An open-source &lt;strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images&lt;/strong>, built from PubMed Central case reports to advance clinical AI research."
+                    data-es="Un &lt;strong>dataset multimodal de código abierto con más de 100K casos clínicos y 140K imágenes médicas&lt;/strong>, construido a partir de reportes de casos de PubMed Central para contribuir con la investigación en IA clínica.">
+                    An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>,
+                    built from PubMed Central case reports to advance clinical AI research.</p>
                 </div>
               </div>
-              <div class="project-card-back" style="background: linear-gradient(135deg, #0073E5 0%, #434656 100%);">
-                <p class="project-desc" style="color:white;" data-en="An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>, built from PubMed Central case reports to advance clinical AI research." data-es="Un <strong>dataset multimodal de código abierto con más de 100K casos clínicos y 140K imágenes médicas</strong>, construido a partir de reportes de casos de PubMed Central para contribuir con la investigación en IA clínica.">An open-source <strong>multimodal dataset of 100K+ clinical cases and 140K+ medical images</strong>, built from PubMed Central case reports to advance clinical AI research.</p>
-                <div class="project-links" style="justify-content:center; margin-top:1rem; flex-wrap:wrap;">
-                  <a class="project-link" href="https://doi.org/10.3390/data10080123" target="_blank" style="color:white; border-color:rgba(255,255,255,0.5);">Read paper</a>
-                  <a class="project-link" href="https://github.com/mauro-nievoff/MultiCaRe_Dataset" target="_blank" style="color:white; border-color:rgba(255,255,255,0.5);">GitHub</a>
-                  <a class="project-link" href="https://zenodo.org/records/20416562" target="_blank" style="color:white; border-color:rgba(255,255,255,0.5);">Zenodo</a>
-                </div>
-              </div>
+
             </div>
           </div>
-
           <!-- 2: Multiplex Classification -->
           <div class="project-card">
             <div class="project-card-inner">
               <div class="project-card-front">
                 <div class="project-thumb">
-                  <img src="images/project_multiplex.png" alt="Multiplex Classification Framework" style="width:121%;height:121%;object-fit:contain;">
+                  <img alt="Multiplex Classification Framework" class="project-img-zoom" decoding="async" loading="lazy"
+                    src="images/project_multiplex.webp" />
                 </div>
                 <div class="project-body">
-                  <p class="project-title" data-en="Multiplex Classification Framework" data-es="Framework de Clasificación Multiplex">Multiplex Classification Framework</p>
+                  <p class="project-title" data-en="Multiplex Classification Framework"
+                    data-es="Framework de Clasificación Multiplex">Multiplex Classification Framework</p>
                   <div class="project-links">
-                    <a class="project-link" href="https://doi.org/10.1177/15705838251340362" target="_blank">Read paper</a>
+                    <a class="project-link" href="https://doi.org/10.1177/15705838251340362" rel="noopener noreferrer"
+                      target="_blank">Read paper</a>
                   </div>
-                  <p class="project-desc" data-en="A <strong>theoretical framework for complex ML classification</strong> supporting any number of classes and logical relations between them, with application to <strong>medical image classification</strong>." data-es="Un <strong>framework teórico para clasificación ML compleja</strong> que soporta cualquier número de clases y relaciones lógicas entre ellas, con aplicación en <strong>clasificación de imágenes médicas</strong>.">A <strong>theoretical framework for complex ML classification</strong> supporting any number of classes and logical relations between them, with application to <strong>medical image classification</strong>.</p>
+                  <p class="project-desc"
+                    data-en="A &lt;strong>theoretical framework for complex ML classification&lt;/strong> supporting any number of classes and logical relations between them, with application to &lt;strong>medical image classification&lt;/strong>."
+                    data-es="Un &lt;strong>framework teórico para clasificación ML compleja&lt;/strong> que soporta cualquier número de clases y relaciones lógicas entre ellas, con aplicación en &lt;strong>clasificación de imágenes médicas&lt;/strong>.">
+                    A <strong>theoretical framework for complex ML classification</strong> supporting any number of
+                    classes and logical relations between them, with application to <strong>medical image
+                      classification</strong>.</p>
                 </div>
               </div>
-              <div class="project-card-back" style="background: linear-gradient(135deg, #6AA7FF 0%, #434656 100%);">
-                <p class="project-desc" style="color:white;" data-en="A <strong>theoretical framework for complex ML classification</strong> supporting any number of classes and logical relations between them, with application to <strong>medical image classification</strong>." data-es="Un <strong>framework teórico para clasificación ML compleja</strong> que soporta cualquier número de clases y relaciones lógicas entre ellas, con aplicación en <strong>clasificación de imágenes médicas</strong>.">A <strong>theoretical framework for complex ML classification</strong> supporting any number of classes and logical relations between them, with application to <strong>medical image classification</strong>.</p>
-                <div class="project-links" style="justify-content:center; margin-top:1rem;">
-                  <a class="project-link" href="https://doi.org/10.1177/15705838251340362" target="_blank" style="color:white; border-color:rgba(255,255,255,0.5);">Read paper</a>
-                </div>
-              </div>
+
             </div>
           </div>
-
           <!-- 3: LLM Fine-tuning -->
           <div class="project-card">
             <div class="project-card-inner">
               <div class="project-card-front">
                 <div class="project-thumb">
-                  <img src="images/project_trial_matching.png" alt="LLM Fine-tuning for Clinical Trial Matching" style="width:121%;height:121%;object-fit:contain;">
+                  <img alt="LLM Fine-tuning for Clinical Trial Matching" class="project-img-zoom" decoding="async"
+                    loading="lazy" src="images/project_trial_matching.webp" />
                 </div>
                 <div class="project-body">
-                  <p class="project-title" data-en="LLM Fine-tuning for Clinical Trial Matching" data-es="Fine-tuning de LLMs para Asignación a Ensayos Clínicos">LLM Fine-tuning for Clinical Trial Matching</p>
+                  <p class="project-title" data-en="LLM Fine-tuning for Clinical Trial Matching"
+                    data-es="Fine-tuning de LLMs para Asignación a Ensayos Clínicos">LLM Fine-tuning for Clinical Trial
+                    Matching</p>
                   <div class="project-links">
-                    <a class="project-link" href="https://doi.org/10.1093/jamia/ocae073" target="_blank">Read paper</a>
+                    <a class="project-link" href="https://doi.org/10.1093/jamia/ocae073" rel="noopener noreferrer"
+                      target="_blank">Read paper</a>
                   </div>
-                  <p class="project-desc" data-en="<strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost." data-es="<strong>Fine-tuning de LLMs de código abierto</strong> para la asignación de pacientes a ensayos clínicos, logrando <strong>paridad de rendimiento con modelos propietarios como GPT-4</strong> a una fracción del costo."><strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost.</p>
+                  <p class="project-desc"
+                    data-en="&lt;strong>Fine-tuned open-source LLMs&lt;/strong> for patient-to-clinical trial matching, achieving &lt;strong>performance parity with proprietary models like GPT-4&lt;/strong> at a fraction of the cost."
+                    data-es="&lt;strong>Fine-tuning de LLMs de código abierto&lt;/strong> para la asignación de pacientes a ensayos clínicos, logrando &lt;strong>paridad de rendimiento con modelos propietarios como GPT-4&lt;/strong> a una fracción del costo.">
+                    <strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving
+                    <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost.
+                  </p>
                 </div>
               </div>
-              <div class="project-card-back" style="background: linear-gradient(135deg, #8CC2FF 0%, #0073E5 100%);">
-                <p class="project-desc" style="color:white;" data-en="<strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost." data-es="<strong>Fine-tuning de LLMs de código abierto</strong> para la asignación de pacientes a ensayos clínicos, logrando <strong>paridad de rendimiento con modelos propietarios como GPT-4</strong> a una fracción del costo."><strong>Fine-tuned open-source LLMs</strong> for patient-to-clinical trial matching, achieving <strong>performance parity with proprietary models like GPT-4</strong> at a fraction of the cost.</p>
-                <div class="project-links" style="justify-content:center; margin-top:1rem;">
-                  <a class="project-link" href="https://doi.org/10.1093/jamia/ocae073" target="_blank" style="color:white; border-color:rgba(255,255,255,0.5);">Read paper</a>
-                </div>
-              </div>
+
             </div>
           </div>
-
           <!-- 4: Oncology NLP -->
           <div class="project-card">
             <div class="project-card-inner">
               <div class="project-card-front">
                 <div class="project-thumb">
-                  <img src="images/project_nlp.png" alt="Oncology NLP Models" style="width:100%;height:100%;object-fit:contain;">
+                  <img alt="Oncology NLP Models" class="project-img-contain" decoding="async" loading="lazy"
+                    src="images/project_nlp.webp" />
                 </div>
                 <div class="project-body">
-                  <p class="project-title" data-en="Oncology NLP Models" data-es="Modelos de NLP en Oncología">Oncology NLP Models</p>
+                  <p class="project-title" data-en="Oncology NLP Models" data-es="Modelos de NLP en Oncología">Oncology
+                    NLP Models</p>
                   <div class="project-links">
-                    <a class="project-link" href="https://www.youtube.com/watch?v=7YYdpBidyDc" target="_blank">▶ NLP Summit Talk</a>
+                    <a class="project-link" href="https://www.youtube.com/watch?v=7YYdpBidyDc" rel="noopener noreferrer"
+                      target="_blank">▶ NLP Summit Talk</a>
                   </div>
-                  <p class="project-desc" data-en="Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related entities." data-es="Construcción y presentación de <strong>modelos de NLP de vanguardia para texto clínico oncológico</strong> en el NLP Summit, usando <strong>Spark NLP para reconocimiento de entidades nombradas</strong>.">Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related entities.</p>
+                  <p class="project-desc"
+                    data-en="Built and presented &lt;strong>state-of-the-art NLP models for oncology clinical text&lt;/strong> at the NLP Summit, using &lt;strong>Spark NLP for named entity recognition&lt;/strong> across cancer-related entities."
+                    data-es="Construcción y presentación de &lt;strong>modelos de NLP de vanguardia para texto clínico oncológico&lt;/strong> en el NLP Summit, usando &lt;strong>Spark NLP para reconocimiento de entidades nombradas&lt;/strong>.">
+                    Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the
+                    NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related
+                    entities.</p>
                 </div>
               </div>
-              <div class="project-card-back" style="background: linear-gradient(135deg, #434656 0%, #0073E5 100%);">
-                <p class="project-desc" style="color:white;" data-en="Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related entities." data-es="Construcción y presentación de <strong>modelos de NLP de vanguardia para texto clínico oncológico</strong> en el NLP Summit, usando <strong>Spark NLP para reconocimiento de entidades nombradas</strong>.">Built and presented <strong>state-of-the-art NLP models for oncology clinical text</strong> at the NLP Summit, using <strong>Spark NLP for named entity recognition</strong> across cancer-related entities.</p>
-                <div class="project-links" style="justify-content:center; margin-top:1rem;">
-                  <a class="project-link" href="https://www.youtube.com/watch?v=7YYdpBidyDc" target="_blank" style="color:white; border-color:rgba(255,255,255,0.5);">▶ NLP Summit Talk</a>
-                </div>
-              </div>
+
             </div>
           </div>
-
         </div>
-
         <!-- GitHub CTA -->
-        <div class="github-cta" style="margin-top:1.5rem;">
-          <a class="github-btn" href="https://github.com/mauro-nievoff" target="_blank">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        <div class="github-cta">
+          <a class="github-btn" href="https://github.com/mauro-nievoff" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z">
+              </path>
+            </svg>
             <span data-en="View my work on GitHub" data-es="Ver mi trabajo en GitHub">View my work on GitHub</span>
           </a>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- SECTION 4 · CONTACT -->
-  <section id="contact">
+
+  <!-- SECTION 5 · CONTACT -->
+  <section >
     <div class="contact-inner">
-
       <div class="contact-header">
-        <h2 class="section-title" data-en="Let's get in touch" data-es="Pongámonos en contacto">Let's get in touch</h2>
-        <p data-en="Have a project in mind, need advice, or just want to connect? Pick whatever works best for you." data-es="¿Tenés un proyecto en mente, necesitás asesoramiento o simplemente querés conectar? Elegí la opción que te quede mejor.">Have a project in mind, need advice, or just want to connect? Pick whatever works best for you.</p>
+        <h2 class="section-title" data-en="Let's get in touch" data-es="Pongámonos en contacto" id="contact">Let's get in touch</h2>
+        <p data-en="Have a project in mind, need advice, or just want to connect? Pick whatever works best for you."
+          data-es="¿Tenés un proyecto en mente, necesitás asesoramiento o simplemente querés conectar? Elegí la opción que te quede mejor.">
+          Have a project in mind, need advice, or just want to connect? Pick whatever works best for you.</p>
       </div>
-
       <!-- Quick action buttons -->
       <div class="contact-actions">
-        <a class="contact-btn btn-cal" href="https://cal.com/mauro-nievas-offidani/30min-call" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <a class="contact-btn btn-cal" href="https://cal.com/mauro-nievas-offidani/30min-call" rel="noopener noreferrer"
+          target="_blank">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24">
+            <rect height="18" rx="2" width="18" x="3" y="4"></rect>
+            <line x1="16" x2="16" y1="2" y2="6"></line>
+            <line x1="8" x2="8" y1="2" y2="6"></line>
+            <line x1="3" x2="21" y1="10" y2="10"></line>
+          </svg>
           <span data-en="Book a 30-min call" data-es="Reservar una llamada">Book a 30-min call</span>
         </a>
-        <a class="contact-btn btn-wa" href="https://wa.me/5492915470782" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.484 2 12.017c0 1.99.577 3.843 1.573 5.407L2 22l4.704-1.555A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        <a class="contact-btn btn-wa" href="https://wa.me/5492915470782" rel="noopener noreferrer" target="_blank">
+          <svg fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z">
+            </path>
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 1.99.577 3.843 1.573 5.407L2 22l4.704-1.555A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z">
+            </path>
+          </svg>
           <span data-en="WhatsApp me" data-es="Escribime por WhatsApp">WhatsApp me</span>
         </a>
-        <a class="contact-btn btn-li" href="https://www.linkedin.com/in/mauronievasoffidani/" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <a class="contact-btn btn-li" href="https://www.linkedin.com/in/mauronievasoffidani/" rel="noopener noreferrer"
+          target="_blank">
+          <svg fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+            </path>
+          </svg>
           <span data-en="Connect through LinkedIn" data-es="Conectar por LinkedIn">Connect through LinkedIn</span>
         </a>
       </div>
-
       <!-- Contact form -->
-      <form class="contact-form" action="https://formspree.io/f/xykardqe" method="POST">
+      <form action="https://formspree.io/f/xykardqe" class="contact-form" method="POST">
         <div class="form-row">
           <div class="form-group">
-            <label for="name" data-en="Name" data-es="Nombre">Name</label>
-            <input type="text" id="name" name="name" data-ph-en="Your name" data-ph-es="Tu nombre" placeholder="Your name" required />
+            <label data-en="Name" data-es="Nombre" for="name">Name</label>
+            <input data-ph-en="Your name" data-ph-es="Tu nombre" id="name" name="name" placeholder="Your name"
+              required="" type="text" />
           </div>
           <div class="form-group">
-            <label for="email" data-en="Email" data-es="Email">Email</label>
-            <input type="email" id="email" name="email" data-ph-en="your@email.com" data-ph-es="tu@email.com" placeholder="your@email.com" required />
+            <label data-en="Email" data-es="Email" for="email">Email</label>
+            <input data-ph-en="your@email.com" data-ph-es="tu@email.com" id="email" name="email"
+              placeholder="your@email.com" required="" type="email" />
           </div>
         </div>
         <div class="form-group">
-          <label for="subject" data-en="Subject" data-es="Asunto">Subject</label>
-          <input type="text" id="subject" name="subject" data-ph-en="What's this about?" data-ph-es="¿De qué se trata?" placeholder="What's this about?" />
+          <label data-en="Subject" data-es="Asunto" for="subject">Subject</label>
+          <input data-ph-en="What's this about?" data-ph-es="¿De qué se trata?" id="subject" name="subject"
+            placeholder="What's this about?" type="text" />
         </div>
         <div class="form-group">
-          <label for="message" data-en="Message" data-es="Mensaje">Message</label>
-          <textarea id="message" name="message" data-ph-en="Tell me about your project or question..." data-ph-es="Contame sobre tu proyecto o consulta..." placeholder="Tell me about your project or question..." required></textarea>
+          <label data-en="Message" data-es="Mensaje" for="message">Message</label>
+          <textarea data-ph-en="Tell me about your project or question..."
+            data-ph-es="Contame sobre tu proyecto o consulta..." id="message" name="message"
+            placeholder="Tell me about your project or question..." required=""></textarea>
         </div>
-        <button type="submit" class="form-submit" style="align-self: center;" data-en="Send message →" data-es="Enviar mensaje →">Send message →</button>
+        <button class="form-submit form-submit-centered" data-en="Send message →" data-es="Enviar mensaje →"
+          type="submit">Send message →</button>
       </form>
-
-      <a class="scroll-cta" href="#hero" style="position:relative; bottom:auto; left:auto; transform:none; margin: 0.5rem auto 0; color: var(--muted);">
+      <a class="scroll-cta scroll-cta--static" href="#hero">
         <span class="scroll-cta-text" data-en="Back to top" data-es="Volver al inicio">Back to top</span>
         <span class="scroll-cta-arrow">
-          <svg viewBox="0 0 14 14" style="transform: rotate(180deg);"><polyline points="2,4 7,10 12,4"/></svg>
+          <svg class="icon-rotate-180" viewBox="0 0 14 14">
+            <polyline points="2,4 7,10 12,4"></polyline>
+          </svg>
         </span>
       </a>
-
       <!-- Footer row -->
-      <div class="contact-footer" style="justify-content: center; gap: 1.5rem;">
+      <div class="contact-footer contact-footer--centered">
         <p class="contact-copy">© 2026 Mauro Nievas Offidani</p>
-        <a href="/privacy.html" style="font-family:'Lato',sans-serif; font-size:0.75rem; color:var(--muted); text-decoration:none;" data-en="Privacy Policy" data-es="Política de Privacidad">Privacy Policy</a>
+        <a class="privacy-link" data-en="Privacy Policy" data-es="Política de Privacidad" href="/privacy.html">Privacy
+          Policy</a>
       </div>
-
     </div>
   </section>
 
-  <!-- Toast notification -->
-  <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
 
+
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const btn = document.getElementById('hamburger');
-      menu.classList.toggle('open');
-      btn.classList.toggle('open');
-    }
-
-    function closeMenu() {
-      document.getElementById('mobileMenu').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
-    }
-
-    // Flip cards removed - all content shown on front
-
-    function setLang(lang) {
-      ['btn-en','btn-es','mob-btn-en','mob-btn-es'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle('active', id.endsWith(lang === 'en' ? 'en' : 'es'));
-      });
-
-      document.querySelectorAll('[data-en]').forEach(el => {
-        const text = el.getAttribute('data-' + lang);
-        if (!text) return;
-        const tag = el.tagName;
-        if (['P', 'H1', 'H2', 'H3', 'SPAN', 'A', 'LABEL', 'BUTTON'].includes(tag)) {
-          el.innerHTML = text;
-        } else {
-          el.textContent = text;
-        }
-      });
-
-      document.querySelectorAll('[data-ph-en]').forEach(el => {
-        el.placeholder = el.getAttribute('data-ph-' + lang) || el.getAttribute('data-ph-en');
-      });
-
-      localStorage.setItem('lang', lang);
-    }
-
-    (function() {
-      const saved = localStorage.getItem('lang');
-      if (saved && saved !== 'en') setLang(saved);
-    })();
-
-    function sharePortfolio() {
-      const url = window.location.href.split('#')[0];
-      if (navigator.share) {
-        navigator.share({ title: 'Mauro Nievas Offidani — AI & Data Science for Healthcare', url });
-      } else {
-        navigator.clipboard.writeText(url).then(() => {
-          const toast = document.getElementById('shareToast');
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 2500);
-        });
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.lucide) {
+        lucide.createIcons();
       }
-    }
-  </script>
 
-  <script>
-    // Highlight active nav link based on visible section
-    const navLinks = document.querySelectorAll('.navbar-link');
-    const sections = document.querySelectorAll('section[id]');
+      const menu = document.getElementById("mobileMenu");
+      const menuButton = document.getElementById("hamburger");
+      const langButtons = document.querySelectorAll("[data-lang]");
+      const closeMenuLinks = document.querySelectorAll("[data-menu-close]");
+      const navLinks = document.querySelectorAll(".navbar-link");
+      const sectionTargets = document.querySelectorAll("#hero, #about, #services, #projects, #contact");
 
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-          });
-        }
+      function setMenuState(isOpen) {
+        if (!menu || !menuButton) return;
+        menu.classList.toggle("open", isOpen);
+        menuButton.classList.toggle("open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        document.body.classList.toggle("menu-open", isOpen);
+      }
+
+      function setLang(lang) {
+        langButtons.forEach((button) => {
+          button.classList.toggle("active", button.dataset.lang === lang);
+        });
+
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll("[data-en]").forEach((el) => {
+          const text = el.getAttribute("data-" + lang);
+          if (!text) return;
+
+          const tag = el.tagName;
+          if (["P", "H1", "H2", "H3", "SPAN", "A", "LABEL", "BUTTON"].includes(tag)) {
+            el.innerHTML = text;
+          } else {
+            el.textContent = text;
+          }
+        });
+
+        document.querySelectorAll("[data-ph-en]").forEach((el) => {
+          el.placeholder = el.getAttribute("data-ph-" + lang) || el.getAttribute("data-ph-en");
+        });
+
+        localStorage.setItem("lang", lang);
+      }
+
+      menuButton?.addEventListener("click", () => {
+        setMenuState(!menu?.classList.contains("open"));
       });
-    }, { threshold: 0.5 });
 
-    sections.forEach(sec => navObserver.observe(sec));
+      closeMenuLinks.forEach((link) => {
+        link.addEventListener("click", () => setMenuState(false));
+      });
+
+      langButtons.forEach((button) => {
+        button.addEventListener("click", () => setLang(button.dataset.lang));
+      });
+
+      const savedLang = localStorage.getItem("lang");
+      if (savedLang && savedLang !== "en") {
+        setLang(savedLang);
+      }
+
+      if ("IntersectionObserver" in window) {
+        const navObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const id = entry.target.id;
+
+            navLinks.forEach((link) => {
+              link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+            });
+          });
+        }, {
+          rootMargin: "-38% 0px -52% 0px",
+          threshold: 0
+        });
+
+        sectionTargets.forEach((target) => navObserver.observe(target));
+      }
+    });
   </script>
-
 </body>
+
 </html>
